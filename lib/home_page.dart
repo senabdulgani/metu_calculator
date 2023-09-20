@@ -23,7 +23,7 @@ class MainMenuStarting extends StatelessWidget {
           ],
         ),
       ),
-      body:Center(child: Text('Ana ekana hoşgeldiniz.',style: TextStyle(fontSize: 24),)),
+      body:Center(child: Text('Ana ekrana hoşgeldiniz.',style: TextStyle(fontSize: 24),)),
       bottomNavigationBar: FooterNavigationBar(),
 
     );
