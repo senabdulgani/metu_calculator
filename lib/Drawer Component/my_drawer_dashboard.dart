@@ -1,33 +1,52 @@
-import '../main.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../Calculator Page/calculator_page.dart';
+import '../state_data.dart';
 
 class MyDrawerDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final pageIndexModel = Provider.of<StateData>(context);
+
     return Column(
       children: [
-        ListTile(
-          leading: Icon(Icons.home),
-          title: Text('Home'),
-          onTap: () {
-            // Add navigation logic here
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.settings),
-          title: Text('Settings'),
-          onTap: () {
-          },
-        ),
-
-        ListTile(
-            leading: Icon(Icons.verified_user),
-            title: Text('sign up'),
-            onTap: (){
-            }
-        ),
-        // Add more ListTiles as needed
+        DrawerListTileComponent(iconText: 'Save your grades.',iconType: Icons.add_box_outlined,goTOPage: (){
+          Navigator.push(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  CalculatorPage(),
+              transitionDuration: Duration(seconds: 0),
+            ),
+          );
+          pageIndexModel.setCurrentPageIndex(2);
+        },),
+        DrawerListTileComponent(iconText: 'Account',iconType: Icons.login_outlined),
       ],
+    );
+  }
+}
+
+class DrawerListTileComponent extends StatelessWidget {
+
+  DrawerListTileComponent({
+    super.key,required this.iconType,required this.iconText,this.goTOPage
+  });
+
+  final IconData iconType;
+  final String iconText;
+  final Function? goTOPage;
+
+  @override
+  Widget build(BuildContext context) {
+
+    return ListTile(
+      leading: Icon(iconType),
+      title: Text('$iconText'),
+      onTap: () {
+        goTOPage;
+      },
     );
   }
 }
