@@ -16,7 +16,7 @@ class MyDrawerDashboard extends StatelessWidget {
             context,
             PageRouteBuilder(
               pageBuilder: (context, animation, secondaryAnimation) =>
-                  CalculatorPage(),
+                  CalculatorPageBodyComponent(),
               transitionDuration: Duration(seconds: 0),
             ),
           );
@@ -38,6 +38,10 @@ class DrawerListTileComponent extends StatelessWidget {
   final String iconText;
   final Function? goTOPage;
 
+  void goToPage(){
+
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -45,7 +49,7 @@ class DrawerListTileComponent extends StatelessWidget {
       leading: Icon(iconType),
       title: Text('$iconText'),
       onTap: () {
-        goTOPage;
+        goTOPage!();
       },
     );
   }

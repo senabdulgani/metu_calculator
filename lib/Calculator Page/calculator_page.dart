@@ -76,153 +76,7 @@ class _CalculatorPage extends State<CalculatorPage> {
       //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: MainAppBar(),
 
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-
-          SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              // Not giriş alanları
-              children: [
-                //2 piece Mid-Term grades
-                TextField(
-                  controller: midterm1Controller,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Midterm 1 Notu',
-                    hintText: '0-100 arası bir değer girin',
-                  ),
-                ),
-                TextField(
-                  controller: midterm2Controller,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Midterm 2 Notu',
-                    hintText: '0-100 arası bir değer girin',
-                  ),
-                ),
-                // Quiz notları
-                Text('Quiz Notları', style: TextStyle(fontSize: 16)),
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: quiz1Controller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Quiz 1',
-                          hintText: '0-100 arası bir değer girin',
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: TextField(
-                        controller: quiz2Controller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Quiz 2',
-                          hintText: '0-100 arası bir değer girin',
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: TextField(
-                        controller: quiz3Controller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Quiz 3',
-                          hintText: '0-100 arası bir değer girin',
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: TextField(
-                        controller: quiz4Controller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Quiz 4',
-                          hintText: '0-100 arası bir değer girin',
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: TextField(
-                        controller: quiz5Controller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Quiz 5',
-                          hintText: '0-100 arası bir değer girin',
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                // Writing notları
-                Text('Writing Notları', style: TextStyle(fontSize: 16)),
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: writing1Controller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Writing 1',
-                          hintText: '0-100 arası bir değer girin',
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: TextField(
-                        controller: writing2Controller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Writing 2',
-                          hintText: '0-100 arası bir değer girin',
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                //Speaking Grade
-                TextField(
-                  controller: speakingController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Speaking Notu',
-                    hintText: '0-100 arası bir değer girin',
-                  ),
-                ),
-                //Instructor Grade
-                TextField(
-                  controller: instructorController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Instructor Notu',
-                    hintText: '0-100 arası bir değer girin',
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          //Logo image inside background.
-          Center(
-            child: IgnorePointer(
-              ignoring: true,
-              child: Opacity(
-                opacity: 0.4,
-                child: Image.asset(
-                  'assets/images/Logo_of_METU.svg.png',
-                  height: 300.0,
-                  width: 300.0,
-                ),
-              ),
-            ),
-          ),
-
-        ],
-      ),
+      body: CalculatorPageBodyComponent(),
 
       floatingActionButton: Consumer<StateData>(
         builder: (context, pageIndexModel, child) {
@@ -245,6 +99,163 @@ class _CalculatorPage extends State<CalculatorPage> {
       ),
 
       bottomNavigationBar: FooterNavigationBar(),
+    );
+  }
+}
+
+class CalculatorPageBodyComponent extends StatelessWidget {
+  const CalculatorPageBodyComponent({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+
+        SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            // Not giriş alanları
+            children: [
+              //2 piece Mid-Term grades
+              TextField(
+                controller: midterm1Controller,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Midterm 1 Notu',
+                  hintText: '0-100 arası bir değer girin',
+                ),
+              ),
+              TextField(
+                controller: midterm2Controller,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Midterm 2 Notu',
+                  hintText: '0-100 arası bir değer girin',
+                ),
+              ),
+              // Quiz notları
+              Text('Quiz Notları', style: TextStyle(fontSize: 16)),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: quiz1Controller,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: 'Quiz 1',
+                        hintText: '0-100 arası bir değer girin',
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: TextField(
+                      controller: quiz2Controller,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: 'Quiz 2',
+                        hintText: '0-100 arası bir değer girin',
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: TextField(
+                      controller: quiz3Controller,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: 'Quiz 3',
+                        hintText: '0-100 arası bir değer girin',
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: TextField(
+                      controller: quiz4Controller,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: 'Quiz 4',
+                        hintText: '0-100 arası bir değer girin',
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: TextField(
+                      controller: quiz5Controller,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: 'Quiz 5',
+                        hintText: '0-100 arası bir değer girin',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              // Writing notları
+              Text('Writing Notları', style: TextStyle(fontSize: 16)),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: writing1Controller,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: 'Writing 1',
+                        hintText: '0-100 arası bir değer girin',
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: TextField(
+                      controller: writing2Controller,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: 'Writing 2',
+                        hintText: '0-100 arası bir değer girin',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              //Speaking Grade
+              TextField(
+                controller: speakingController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Speaking Notu',
+                  hintText: '0-100 arası bir değer girin',
+                ),
+              ),
+              //Instructor Grade
+              TextField(
+                controller: instructorController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Instructor Notu',
+                  hintText: '0-100 arası bir değer girin',
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        //Logo image inside background.
+        Center(
+          child: IgnorePointer(
+            ignoring: true,
+            child: Opacity(
+              opacity: 0.4,
+              child: Image.asset(
+                'assets/images/Logo_of_METU.svg.png',
+                height: 300.0,
+                width: 300.0,
+              ),
+            ),
+          ),
+        ),
+
+      ],
     );
   }
 }
