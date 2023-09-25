@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
-  MainAppBar({
-    super.key,});
+  const MainAppBar({
+    super.key,
+    this.openDrawer, // Çekmeyi açmak için bir işlev ekleyin
+  });
+
+  final VoidCallback? openDrawer; // Çekmeyi açmak için kullanılacak işlev
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -27,6 +31,9 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           ],
         ),
       ),
+      // leading: IconButton(
+      //   icon: Icon(Icons.menu),
+      //   onPressed: openDrawer, // Çekmeyi açmak için belirtilen işlevi çağırın
       );
   }
 }

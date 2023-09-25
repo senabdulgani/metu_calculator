@@ -1,33 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'Footer Bar/footer_navigation_bar_view.dart';
-import 'App Bar/general_app_bar.dart';
+import 'general_app_bar.dart';
 import 'Drawer Component/my_drawer_dashboard.dart';
 import 'Drawer Component/my_drawer_header.dart';
 
-class MainMenuStarting extends StatefulWidget {
+class MainMenuStarting extends StatelessWidget {
   const MainMenuStarting({super.key});
-
-  @override
-  State<MainMenuStarting> createState() => _MainMenuStartingState();
-}
-
-class _MainMenuStartingState extends State<MainMenuStarting> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(),
+      appBar: MainAppBar(openDrawer: () {
+
+      },
+      ),
       drawer: Drawer(
-        child: Column(
-          //padding: EdgeInsets.zero,
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: [
             MyDrawerHeader(), // Use your custom drawer header here
             MyDrawerDashboard(), // Use your custom drawer dashboard here
           ],
-
         ),
       ),
+      body:Center(child: Text('Ana ekrana hoşgeldiniz.',style: TextStyle(fontSize: 24),)),
       bottomNavigationBar: FooterNavigationBar(),
 
     );
