@@ -4,7 +4,7 @@ import 'package:metu_calculator/state_data.dart';
 import 'package:provider/provider.dart';
 import '../Footer Bar/footer_navigation_bar_view.dart';
 import '../Footer Bar/footer_navigator.dart';
-import '../general_app_bar.dart';
+import '../App Bar/general_app_bar.dart';
 
 
 class ResultPageView extends StatefulWidget {

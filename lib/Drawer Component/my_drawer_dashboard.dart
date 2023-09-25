@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../Calculator Page/calculator_page.dart';
 import '../state_data.dart';
 
-class MyDrawerDashboard extends StatelessWidget {
+class MyDrawerDashboard extends StatefulWidget {
+  @override
+  State<MyDrawerDashboard> createState() => _MyDrawerDashboardState();
+}
+
+class _MyDrawerDashboardState extends State<MyDrawerDashboard> {
+
   @override
   Widget build(BuildContext context) {
+
     final pageIndexModel = Provider.of<StateData>(context);
 
     return Column(
@@ -16,7 +22,7 @@ class MyDrawerDashboard extends StatelessWidget {
             context,
             PageRouteBuilder(
               pageBuilder: (context, animation, secondaryAnimation) =>
-                  CalculatorPageBodyComponent(),
+                  CalculatorPage(),
               transitionDuration: Duration(seconds: 0),
             ),
           );

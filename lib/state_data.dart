@@ -9,14 +9,12 @@ class StateData with ChangeNotifier{
   }
 
 
-
-
   int _currentPageIndex = 1;
 
   int get currentPageIndex => _currentPageIndex;
 
   void setCurrentPageIndex(int index) {
     _currentPageIndex = index;
-    notifyListeners(); // Değişiklikleri dinleyen widgetları güncelle
+    notifyListeners(); //update widgets that they listen differences in progress.
   }
 }

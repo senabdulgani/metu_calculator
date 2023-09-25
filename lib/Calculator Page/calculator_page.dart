@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:metu_calculator/state_data.dart';
 import 'package:provider/provider.dart';
+import 'package:switch_button/switch_button.dart';
 
 import 'result_page_view.dart';
 import '../Footer Bar/footer_navigation_bar_view.dart';
-import '../general_app_bar.dart';
+import '../App Bar/general_app_bar.dart';
 
 
 class CalculatorPage extends StatefulWidget {
@@ -15,12 +16,6 @@ class CalculatorPage extends StatefulWidget {
   @override
   State<CalculatorPage> createState() => _CalculatorPage();
 }
-
-/*
-List<TextEditingController> midTermGradeList=[midterm1Controller,midterm2Controller];
-List<TextEditingController> quizGradeList=[midterm1Controller,midterm2Controller];
-List<TextEditingController> writingGradeList=[midterm1Controller,midterm2Controller];
-*/
 
 TextEditingController midterm1Controller = TextEditingController(text: '0');
 TextEditingController midterm2Controller = TextEditingController(text: '0');
@@ -49,7 +44,10 @@ class _CalculatorPage extends State<CalculatorPage> {
     double instructor = double.parse(instructorController.text);
     double result = 2.2;
 
-    // Notların ağırlıklarını belirleyin (örneğin, quizlerin ağırlığı %30, midterm'lerin ağırlığı %40, writing'in ağırlığı %10, speaking'in ağırlığı %10 ve instructor notunun ağırlığı %10)
+    // Notların ağırlıklarını belirleyin (örneğin, quizlerin ağırlığı %30,
+    // midterm'lerin ağırlığı %40, writing'in ağırlığı %10, speaking'in
+    // ağırlığı %10 ve instructor notunun ağırlığı %10)
+
     double quizAgirlik = 0.3;
     double midtermAgirlik = 0.4;
     double writingAgirlik = 0.1;
@@ -103,13 +101,20 @@ class _CalculatorPage extends State<CalculatorPage> {
   }
 }
 
-class CalculatorPageBodyComponent extends StatelessWidget {
+class CalculatorPageBodyComponent extends StatefulWidget {
   const CalculatorPageBodyComponent({
     super.key,
   });
 
   @override
+  State<CalculatorPageBodyComponent> createState() => _CalculatorPageBodyComponentState();
+}
+
+class _CalculatorPageBodyComponentState extends State<CalculatorPageBodyComponent> {
+  @override
   Widget build(BuildContext context) {
+    //bool isSaveModeOn = Provider.of<StateData>(context).isSaveModeOn;
+
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -117,8 +122,10 @@ class CalculatorPageBodyComponent extends StatelessWidget {
         SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            // Not giriş alanları
             children: [
+
+
+              // Not giriş alanları
               //2 piece Mid-Term grades
               TextField(
                 controller: midterm1Controller,

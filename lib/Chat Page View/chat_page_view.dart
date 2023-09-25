@@ -3,7 +3,7 @@ import 'package:metu_calculator/Footer%20Bar/footer_navigation_bar_view.dart';
 import 'package:metu_calculator/Footer%20Bar/footer_navigator.dart';
 import 'package:metu_calculator/main.dart';
 
-import '../general_app_bar.dart';
+import '../App Bar/general_app_bar.dart';
 
 class ChatPage extends StatelessWidget {
   @override
