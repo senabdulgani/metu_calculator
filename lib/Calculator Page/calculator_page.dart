@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'result_page_view.dart';
 import '../Footer Bar/footer_navigation_bar_view.dart';
 import '../general_app_bar.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({super.key, this.title});
@@ -14,12 +14,6 @@ class CalculatorPage extends StatefulWidget {
   @override
   State<CalculatorPage> createState() => _CalculatorPage();
 }
-
-/*
-List<TextEditingController> midTermGradeList=[midterm1Controller,midterm2Controller];
-List<TextEditingController> quizGradeList=[midterm1Controller,midterm2Controller];
-List<TextEditingController> writingGradeList=[midterm1Controller,midterm2Controller];
-*/
 
 TextEditingController midterm1Controller = TextEditingController(text: '0');
 TextEditingController midterm2Controller = TextEditingController(text: '0');
@@ -33,7 +27,55 @@ TextEditingController writing2Controller = TextEditingController(text: '0');
 TextEditingController speakingController = TextEditingController(text: '0');
 TextEditingController instructorController = TextEditingController(text: '0');
 
+@override
 class _CalculatorPage extends State<CalculatorPage> {
+  // Get the exam grades from the text controllers
+  double midterm1 = double.parse(midterm1Controller.text);
+  double midterm2 = double.parse(midterm2Controller.text);
+  double quiz1 = double.parse(quiz1Controller.text);
+  double quiz2 = double.parse(quiz2Controller.text);
+  double quiz3 = double.parse(quiz3Controller.text);
+  double quiz4 = double.parse(quiz4Controller.text);
+  double quiz5 = double.parse(quiz5Controller.text);
+  double writing1 = double.parse(writing1Controller.text);
+  double writing2 = double.parse(writing2Controller.text);
+  double speaking = double.parse(speakingController.text);
+  double instructor = double.parse(instructorController.text);
+
+  //create result variable for write other page.
+  double result = 0.0;
+
+  Future<void> saveExamGrades() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    // Save the exam grades to SharedPreferences
+    prefs.setDouble('midterm1', midterm1);
+    prefs.setDouble('midterm2', midterm2);
+    prefs.setDouble('quiz1', quiz1);
+    prefs.setDouble('quiz2', quiz2);
+    prefs.setDouble('quiz3', quiz3);
+    prefs.setDouble('quiz4', quiz4);
+    prefs.setDouble('quiz5', quiz5);
+    prefs.setDouble('writing1', writing1);
+    prefs.setDouble('writing2', writing2);
+    prefs.setDouble('speaking', speaking);
+    prefs.setDouble('instructor', instructor);
+  }
+
+  void resetBoard() {
+  midterm1Controller.clear();
+  midterm2Controller.clear();
+  quiz1Controller.clear();
+  quiz2Controller.clear();
+  quiz3Controller.clear();
+  quiz4Controller.clear();
+  quiz5Controller.clear();
+  writing1Controller.clear();
+  writing2Controller.clear();
+  speakingController.clear();
+  instructorController.clear();
+  }
+
   void calculateThem() {
     double midterm1 = double.parse(midterm1Controller.text);
     double midterm2 = double.parse(midterm2Controller.text);
@@ -46,7 +88,6 @@ class _CalculatorPage extends State<CalculatorPage> {
     double writing2 = double.parse(writing2Controller.text);
     double speaking = double.parse(speakingController.text);
     double instructor = double.parse(instructorController.text);
-    double result = 2.2;
 
     // Notların ağırlıklarını belirleyin (örneğin, quizlerin ağırlığı %30, midterm'lerin ağırlığı %40, writing'in ağırlığı %10, speaking'in ağırlığı %10 ve instructor notunun ağırlığı %10)
     double quizAgirlik = 0.3;
@@ -67,8 +108,6 @@ class _CalculatorPage extends State<CalculatorPage> {
     setState(() {});
   }
 
-
-
   //ResultPageView resulPageInstance = new ResultPageView();
 
   @override
@@ -77,72 +116,12 @@ class _CalculatorPage extends State<CalculatorPage> {
       //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: MainAppBar(),
 
-      body: CalculatorPageBodyComponent(),
-
-      floatingActionButton: Consumer<StateData>(
-        builder: (context, pageIndexModel, child) {
-          return FloatingActionButton(
-            onPressed: () {
-              calculateThem();
-              pageIndexModel.setCurrentPageIndex(2);
-              Navigator.of(context).push(PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) {
-                  return ResultPageView(); // Geçiş yapılacak sayfayı buraya ekleyin
-                },
-                transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                  return child; // Animasyonları devre dışı bırakmak için child'ı döndürün
-                },
-              ));
-            },
-            child: Icon(Icons.equalizer),
-          );
-        },
-      ),
-
-      bottomNavigationBar: FooterNavigationBar(),
-    );
-  }
-}
-
-class CalculatorPageBodyComponent extends StatelessWidget {
-  const CalculatorPageBodyComponent({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-
-      floatingActionButton: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.only(right: 30,top: 30),
-            child: ClipRect(
-              child: SizedBox(
-                width: 70,  // Width of the FAB
-                height: 35,  // Height of the FAB
-                child: FloatingActionButton(onPressed: (){
-
-                  },
-                backgroundColor: Color(0xFFfF44336),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: 0,),
-          Container(margin: EdgeInsets.only(right: 30),child: Text('Save',style: TextStyle(fontSize: 18),)),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop, // Adjust the location as needed
-
-
       body: Stack(
         alignment: Alignment.center,
         children: [
-
           SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               // Not giriş alanları
               children: [
                 //2 piece Mid-Term grades
@@ -280,9 +259,70 @@ class CalculatorPageBodyComponent extends StatelessWidget {
               ),
             ),
           ),
-
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding:
+                  const EdgeInsets.all(16.0), // Adjust the padding as needed
+              child: ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Exam grades have been saved.'),
+                    ),
+                  );
+                  saveExamGrades();
+                },
+                child: Text('Save Grades'),
+              ),
+            ),
+          ),
+          Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
+                  child: Text('Kimin notunu kullanmak istersin.'),
+                  color: Colors.green,
+                ),
+              )),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding:
+                  const EdgeInsets.all(16.0), // Adjust the padding as needed
+              child: ElevatedButton(
+                onPressed: () {
+                  resetBoard();
+                },
+                child: Text('Reset'),
+              ),
+            ),
+          ),
         ],
       ),
+      floatingActionButton: Consumer<StateData>(
+        builder: (context, pageIndexModel, child) {
+          return FloatingActionButton(
+            onPressed: () {
+              calculateThem();
+              pageIndexModel.setCurrentPageIndex(2);
+              Navigator.of(context).push(PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) {
+                  return ResultPageView();
+                },
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return child; // Animasyonları devre dışı bırakmak için child'ı döndürün
+                },
+              ));
+            },
+            child: Icon(Icons.equalizer),
+          );
+        },
+      ),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+      bottomNavigationBar: FooterNavigationBar(),
     );
   }
 }

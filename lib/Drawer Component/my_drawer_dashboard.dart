@@ -11,7 +11,7 @@ class MyDrawerDashboard extends StatelessWidget {
 
     return Column(
       children: [
-        DrawerListTileComponent(iconText: 'Save your grades.',iconType: Icons.add_box_outlined,goTOPage: (){
+        /*DrawerListTileComponent(iconText: 'Save your grades.',iconType: Icons.add_box_outlined,goTOPage: (){
           Navigator.push(
             context,
             PageRouteBuilder(
@@ -21,7 +21,7 @@ class MyDrawerDashboard extends StatelessWidget {
             ),
           );
           pageIndexModel.setCurrentPageIndex(2);
-        },),
+        },),*/
         DrawerListTileComponent(iconText: 'Account',iconType: Icons.login_outlined),
       ],
     );
