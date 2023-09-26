@@ -15,37 +15,25 @@ class CalculatorPage extends StatefulWidget {
   State<CalculatorPage> createState() => _CalculatorPage();
 }
 
-TextEditingController midterm1Controller = TextEditingController(text: '0');
-TextEditingController midterm2Controller = TextEditingController(text: '0');
-TextEditingController quiz1Controller = TextEditingController(text: '0');
-TextEditingController quiz2Controller = TextEditingController(text: '0');
-TextEditingController quiz3Controller = TextEditingController(text: '0');
-TextEditingController quiz4Controller = TextEditingController(text: '0');
-TextEditingController quiz5Controller = TextEditingController(text: '0');
-TextEditingController writing1Controller = TextEditingController(text: '0');
-TextEditingController writing2Controller = TextEditingController(text: '0');
-TextEditingController speakingController = TextEditingController(text: '0');
-TextEditingController instructorController = TextEditingController(text: '0');
+TextEditingController midterm1Controller = TextEditingController();
+TextEditingController midterm2Controller = TextEditingController();
+TextEditingController quiz1Controller = TextEditingController();
+TextEditingController quiz2Controller = TextEditingController();
+TextEditingController quiz3Controller = TextEditingController();
+TextEditingController quiz4Controller = TextEditingController();
+TextEditingController quiz5Controller = TextEditingController();
+TextEditingController writing1Controller = TextEditingController();
+TextEditingController writing2Controller = TextEditingController();
+TextEditingController speakingController = TextEditingController();
+TextEditingController instructorController = TextEditingController();
 
 @override
 class _CalculatorPage extends State<CalculatorPage> {
-  // Get the exam grades from the text controllers
-  double midterm1 = double.parse(midterm1Controller.text);
-  double midterm2 = double.parse(midterm2Controller.text);
-  double quiz1 = double.parse(quiz1Controller.text);
-  double quiz2 = double.parse(quiz2Controller.text);
-  double quiz3 = double.parse(quiz3Controller.text);
-  double quiz4 = double.parse(quiz4Controller.text);
-  double quiz5 = double.parse(quiz5Controller.text);
-  double writing1 = double.parse(writing1Controller.text);
-  double writing2 = double.parse(writing2Controller.text);
-  double speaking = double.parse(speakingController.text);
-  double instructor = double.parse(instructorController.text);
 
   //create result variable for write other page.
   double result = 0.0;
 
-  Future<void> saveExamGrades() async {
+  /*Future<void> saveExamGrades() async {
     final prefs = await SharedPreferences.getInstance();
 
     // Save the exam grades to SharedPreferences
@@ -60,7 +48,7 @@ class _CalculatorPage extends State<CalculatorPage> {
     prefs.setDouble('writing2', writing2);
     prefs.setDouble('speaking', speaking);
     prefs.setDouble('instructor', instructor);
-  }
+  }*/
 
   void resetBoard() {
   midterm1Controller.clear();
@@ -77,17 +65,17 @@ class _CalculatorPage extends State<CalculatorPage> {
   }
 
   void calculateThem() {
-    double midterm1 = double.parse(midterm1Controller.text);
-    double midterm2 = double.parse(midterm2Controller.text);
-    double quiz1 = double.parse(quiz1Controller.text);
-    double quiz2 = double.parse(quiz2Controller.text);
-    double quiz3 = double.parse(quiz3Controller.text);
-    double quiz4 = double.parse(quiz4Controller.text);
-    double quiz5 = double.parse(quiz5Controller.text);
-    double writing1 = double.parse(writing1Controller.text);
-    double writing2 = double.parse(writing2Controller.text);
-    double speaking = double.parse(speakingController.text);
-    double instructor = double.parse(instructorController.text);
+    double? midterm1 = double.tryParse(midterm1Controller.text);
+    double? midterm2 = double.tryParse(midterm2Controller.text);
+    double? quiz1 = double.tryParse(quiz1Controller.text);
+    double? quiz2 = double.tryParse(quiz2Controller.text);
+    double? quiz3 = double.tryParse(quiz3Controller.text);
+    double? quiz4 = double.tryParse(quiz4Controller.text);
+    double? quiz5 = double.tryParse(quiz5Controller.text);
+    double? writing1 = double.tryParse(writing1Controller.text);
+    double? writing2 = double.tryParse(writing2Controller.text);
+    double? speaking = double.tryParse(speakingController.text);
+    double? instructor = double.tryParse(instructorController.text);
 
     // Notların ağırlıklarını belirleyin (örneğin, quizlerin ağırlığı %30, midterm'lerin ağırlığı %40, writing'in ağırlığı %10, speaking'in ağırlığı %10 ve instructor notunun ağırlığı %10)
     double quizAgirlik = 0.3;
@@ -96,17 +84,65 @@ class _CalculatorPage extends State<CalculatorPage> {
     double speakingAgirlik = 0.1;
     double instructorAgirlik = 0.1;
 
+    // Sıfır veya boş olmayan notları hesaplamaya dahil et
+    double totalScore = 0;
+    double totalWeight = 0;
+
+    if (midterm1 != null) {
+      totalScore += midterm1 * midtermAgirlik;
+      totalWeight += midtermAgirlik;
+    }
+    if (midterm2 != null) {
+      totalScore += midterm2 * midtermAgirlik;
+      totalWeight += midtermAgirlik;
+    }
+    if (quiz1 != null) {
+      totalScore += quiz1 * quizAgirlik;
+      totalWeight += quizAgirlik;
+    }
+    if (quiz2 != null) {
+      totalScore += quiz2 * quizAgirlik;
+      totalWeight += quizAgirlik;
+    }
+    if (quiz3 != null) {
+      totalScore += quiz3 * quizAgirlik;
+      totalWeight += quizAgirlik;
+    }
+    if (quiz4 != null) {
+      totalScore += quiz4 * quizAgirlik;
+      totalWeight += quizAgirlik;
+    }
+    if (quiz5 != null) {
+      totalScore += quiz5 * quizAgirlik;
+      totalWeight += quizAgirlik;
+    }
+    if (writing1 != null) {
+      totalScore += writing1 * writingAgirlik;
+      totalWeight += writingAgirlik;
+    }
+    if (writing2 != null) {
+      totalScore += writing2 * writingAgirlik;
+      totalWeight += writingAgirlik;
+    }
+    if (speaking != null) {
+      totalScore += speaking * speakingAgirlik;
+      totalWeight += speakingAgirlik;
+    }
+    if (instructor != null) {
+      totalScore += instructor * instructorAgirlik;
+      totalWeight += instructorAgirlik;
+    }
+
     // Ortalama hesaplama
-    result = (midterm1 + midterm2) / 2 * midtermAgirlik +
-        (quiz1 + quiz2 + quiz3 + quiz4 + quiz5) / 5 * quizAgirlik +
-        (writing1 + writing2) / 2 * writingAgirlik +
-        speaking * speakingAgirlik +
-        instructor * instructorAgirlik;
+    double result = totalWeight > 0 ? totalScore / totalWeight : 0;
 
     Provider.of<StateData>(context, listen: false).updateResult(result);
 
     setState(() {});
   }
+
+
+
 
   //ResultPageView resulPageInstance = new ResultPageView();
 
@@ -271,7 +307,7 @@ class _CalculatorPage extends State<CalculatorPage> {
                       content: Text('Exam grades have been saved.'),
                     ),
                   );
-                  saveExamGrades();
+                  //saveExamGrades();
                 },
                 child: Text('Save Grades'),
               ),
@@ -294,6 +330,7 @@ class _CalculatorPage extends State<CalculatorPage> {
               child: ElevatedButton(
                 onPressed: () {
                   resetBoard();
+                  print('Bu buton çalışıyor!');
                 },
                 child: Text('Reset'),
               ),
