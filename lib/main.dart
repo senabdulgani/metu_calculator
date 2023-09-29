@@ -8,12 +8,25 @@ import 'package:provider/provider.dart';
 
 
 
-void main() {
-  runApp(ChangeNotifierProvider(create:(BuildContext context){
-    return StateData();
-    },
-      child: const MyApp()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final gradesProvider = GradesProvider();
+  await gradesProvider.kayitliSeciliKisiyiYukle();
+  await gradesProvider.kayitliNotlariYukle();
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => StateData()),
+        ChangeNotifierProvider(create: (context) => GradesProvider()),
+        // Diğer Provider sınıflarını buraya ekleyebilirsiniz
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -32,7 +45,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context)=> Splash(),
         '/homePage': (context)=> MainMenuStarting(),
-        '/chatDisplay': (context) => ChatPage(),
+        '/chatDisplay': (context) => TimerCountDown(),
 
       },
     );
