@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:metu_calculator/state_data.dart';
 import 'package:provider/provider.dart';
+import '../drop_down_saved.dart';
 import 'result_page_view.dart';
 import '../Footer Bar/footer_navigation_bar_view.dart';
 import '../general_app_bar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({super.key, this.title});
@@ -295,47 +295,68 @@ class _CalculatorPage extends State<CalculatorPage> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.topRight,
-            child: Padding(
-              padding:
-                  const EdgeInsets.all(16.0), // Adjust the padding as needed
-              child: ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Exam grades have been saved.'),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+
+
+              Flexible(
+                flex: 1,
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding:
+                    const EdgeInsets.only(left: 12,top: 16,bottom: 8), // Adjust the padding as needed
+                    child: ElevatedButton(
+                      onPressed: () {
+                        resetBoard();
+                        print('Bu buton çalışıyor!');
+                      },
+                      child: Text('Reset'),
                     ),
-                  );
-                  //saveExamGrades();
-                },
-                child: Text('Save Grades'),
-              ),
-            ),
-          ),
-          Align(
-              alignment: Alignment.topCenter,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Container(
-                  child: Text('Kimin notunu kullanmak istersin.'),
-                  color: Colors.green,
+                  ),
                 ),
-              )),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding:
-                  const EdgeInsets.all(16.0), // Adjust the padding as needed
-              child: ElevatedButton(
-                onPressed: () {
-                  resetBoard();
-                  print('Bu buton çalışıyor!');
-                },
-                child: Text('Reset'),
               ),
-            ),
+
+
+
+              Flexible(
+                flex: 1,
+                child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8,top: 16,bottom: 8),
+                      child: DropdownUsers(),
+                    )),
+              ),
+
+
+
+              Flexible(
+                flex:1,
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding:
+                    const EdgeInsets.only(right: 8,top: 16,bottom: 8),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Exam grades have been saved.'),
+                          ),
+                        );
+                        //saveExamGrades();
+                      },
+                      child: Text('Save Grades'),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
+
         ],
       ),
       floatingActionButton: Consumer<StateData>(

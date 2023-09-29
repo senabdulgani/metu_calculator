@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:metu_calculator/home_page.dart';
-import 'package:metu_calculator/main.dart';
 import 'package:provider/provider.dart';
 import '../Chat Page View/chat_page_view.dart';
 import '../Calculator Page/calculator_page.dart';
@@ -28,7 +27,7 @@ class _FooterNavigationBarState extends State<FooterNavigationBar> {
               context,
               PageRouteBuilder(
                 pageBuilder: (context, animation, secondaryAnimation) =>
-                    ChatPage(),
+                    TimerCountDown(),
                 transitionDuration: Duration(seconds: 0),
               ),
             );
