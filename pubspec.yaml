@@ -40,6 +40,8 @@ dependencies:
   provider: ^6.0.5
   shared_preferences: ^2.2.1
   flutter_timer_countdown: ^1.0.5
+  firebase_core: ^2.16.0
+  cloud_firestore: ^4.9.2
 
 dev_dependencies:
   flutter_test:

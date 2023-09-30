@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'result_page_view.dart';
 
 class AdvicePage extends StatelessWidget {
   const AdvicePage({super.key});
@@ -13,10 +12,10 @@ class AdvicePage extends StatelessWidget {
       left: 0,
       right: 0,
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         height: containerHeight,
         color: Colors.black,
-        child: Align(
+        child: const Align(
           alignment: Alignment.bottomCenter,
           child: Column(
             // Your components here

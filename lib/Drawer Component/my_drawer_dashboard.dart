@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:metu_calculator/state_data.dart';
 import 'package:provider/provider.dart';
-import '../Calculator Page/calculator_page.dart';
-import '../state_data.dart';
+
 
 class MyDrawerDashboard extends StatelessWidget {
   @override

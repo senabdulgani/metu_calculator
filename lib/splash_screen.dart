@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:metu_calculator/home_page.dart';
-import 'main.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
