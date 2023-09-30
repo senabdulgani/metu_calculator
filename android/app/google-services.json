@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1087048801658",
+    "project_id": "metucalculator-723aa",
+    "storage_bucket": "metucalculator-723aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087048801658:android:6e06e39cc239f2b6b7cac3",
+        "android_client_info": {
+          "package_name": "com.example.metu_calculator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXPonCKmnhgf7HrY7sQFnQvXUTzdk-hBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -45,14 +45,14 @@ class _FooterNavigationBarState extends State<FooterNavigationBar> {
             pageIndexModel.setCurrentPageIndex(1);
             break;
           case 2:
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) =>
-                    CalculatorPage(),
-                transitionDuration: Duration(seconds: 0),
-              ),
-            );
+            // Navigator.push(
+            //   context,
+            //   PageRouteBuilder(
+            //     pageBuilder: (context, animation, secondaryAnimation) =>
+            //         CalculatorPage(),
+            //     transitionDuration: Duration(seconds: 0),
+            //   ),
+            // );
             pageIndexModel.setCurrentPageIndex(2);
             break;
         }

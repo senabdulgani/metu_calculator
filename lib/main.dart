@@ -1,5 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:metu_calculator/Chat%20Page%20View/chat_page_view.dart';
+import 'package:metu_calculator/firebase_options.dart';
 import 'package:metu_calculator/home_page.dart';
 
 import 'splash_screen.dart';
@@ -12,8 +14,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final gradesProvider = GradesProvider();
-  await gradesProvider.kayitliSeciliKisiyiYukle();
-  await gradesProvider.kayitliNotlariYukle();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
 
   runApp(
     MultiProvider(
