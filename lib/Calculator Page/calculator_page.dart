@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:metu_calculator/state_data.dart';
 import 'package:provider/provider.dart';
-import '../drop_down_saved.dart';
 import 'result_page_view.dart';
 import '../Footer Bar/footer_navigation_bar_view.dart';
 import '../general_app_bar.dart';
@@ -27,41 +27,36 @@ TextEditingController writing2Controller = TextEditingController();
 TextEditingController speakingController = TextEditingController();
 TextEditingController instructorController = TextEditingController();
 
+//focusnodleer ekle
+FocusNode midterm1FocusNode = FocusNode();
+FocusNode midterm2FocusNode = FocusNode();
+FocusNode quiz1FocusNode = FocusNode();
+FocusNode quiz2FocusNode = FocusNode();
+FocusNode quiz3FocusNode = FocusNode();
+FocusNode quiz4FocusNode = FocusNode();
+FocusNode quiz5FocusNode = FocusNode();
+FocusNode writing1FocusNode = FocusNode();
+FocusNode writing2FocusNode = FocusNode();
+FocusNode speakingFocusNode = FocusNode();
+FocusNode instructorFocusNode = FocusNode();
+
 @override
 class _CalculatorPage extends State<CalculatorPage> {
-
   //create result variable for write other page.
   double result = 0.0;
 
-  /*Future<void> saveExamGrades() async {
-    final prefs = await SharedPreferences.getInstance();
-
-    // Save the exam grades to SharedPreferences
-    prefs.setDouble('midterm1', midterm1);
-    prefs.setDouble('midterm2', midterm2);
-    prefs.setDouble('quiz1', quiz1);
-    prefs.setDouble('quiz2', quiz2);
-    prefs.setDouble('quiz3', quiz3);
-    prefs.setDouble('quiz4', quiz4);
-    prefs.setDouble('quiz5', quiz5);
-    prefs.setDouble('writing1', writing1);
-    prefs.setDouble('writing2', writing2);
-    prefs.setDouble('speaking', speaking);
-    prefs.setDouble('instructor', instructor);
-  }*/
-
   void resetBoard() {
-  midterm1Controller.clear();
-  midterm2Controller.clear();
-  quiz1Controller.clear();
-  quiz2Controller.clear();
-  quiz3Controller.clear();
-  quiz4Controller.clear();
-  quiz5Controller.clear();
-  writing1Controller.clear();
-  writing2Controller.clear();
-  speakingController.clear();
-  instructorController.clear();
+    midterm1Controller.clear();
+    midterm2Controller.clear();
+    quiz1Controller.clear();
+    quiz2Controller.clear();
+    quiz3Controller.clear();
+    quiz4Controller.clear();
+    quiz5Controller.clear();
+    writing1Controller.clear();
+    writing2Controller.clear();
+    speakingController.clear();
+    instructorController.clear();
   }
 
   void calculateThem() {
@@ -141,246 +136,268 @@ class _CalculatorPage extends State<CalculatorPage> {
     setState(() {});
   }
 
-
-
-
-  //ResultPageView resulPageInstance = new ResultPageView();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      appBar: MainAppBar(),
-
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          SingleChildScrollView(
+      appBar: const MainAppBar(),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.all(30),
+          child: Form(
+            key: formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
-              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              // Not giriş alanları
               children: [
-                //2 piece Mid-Term grades
-                TextField(
+                //Midterm ------------
+                const Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Text('Midterm Notları', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
+                ),
+                NotTextfield(
+                  title: 'Midterm 1',
                   controller: midterm1Controller,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Midterm 1 Notu',
-                    hintText: '0-100 arası bir değer girin',
-                  ),
+                  focusNode: midterm1FocusNode,
+                  nextFocus: midterm2FocusNode,
                 ),
-                TextField(
+                NotTextfield(
+                  title: 'Midterm 2',
                   controller: midterm2Controller,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Midterm 2 Notu',
-                    hintText: '0-100 arası bir değer girin',
-                  ),
+                  focusNode: midterm2FocusNode,
+                  nextFocus: quiz1FocusNode,
                 ),
-                // Quiz notları
-                Text('Quiz Notları', style: TextStyle(fontSize: 16)),
-                Row(
+
+                //Quiz ------------
+                const Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Text('Quiz Notları', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
+                ),
+                Column(
                   children: [
-                    Expanded(
-                      child: TextField(
-                        controller: quiz1Controller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Quiz 1',
-                          hintText: '0-100 arası bir değer girin',
-                        ),
-                      ),
+                    NotTextfield(
+                      title: 'Quiz 1',
+                      controller: quiz1Controller,
+                      focusNode: quiz1FocusNode,
+                      nextFocus: quiz2FocusNode,
                     ),
-                    Expanded(
-                      child: TextField(
-                        controller: quiz2Controller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Quiz 2',
-                          hintText: '0-100 arası bir değer girin',
-                        ),
-                      ),
+                    NotTextfield(
+                      title: 'Quiz 2',
+                      controller: quiz2Controller,
+                      focusNode: quiz2FocusNode,
+                      nextFocus: quiz3FocusNode,
                     ),
-                    Expanded(
-                      child: TextField(
-                        controller: quiz3Controller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Quiz 3',
-                          hintText: '0-100 arası bir değer girin',
-                        ),
-                      ),
+                    NotTextfield(
+                      title: 'Quiz 3',
+                      controller: quiz3Controller,
+                      focusNode: quiz3FocusNode,
+                      nextFocus: quiz4FocusNode,
                     ),
-                    Expanded(
-                      child: TextField(
-                        controller: quiz4Controller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Quiz 4',
-                          hintText: '0-100 arası bir değer girin',
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: TextField(
-                        controller: quiz5Controller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Quiz 5',
-                          hintText: '0-100 arası bir değer girin',
-                        ),
-                      ),
+                    NotTextfield(
+                      title: 'Quiz 4',
+                      controller: quiz4Controller,
+                      focusNode: quiz4FocusNode,
+                      nextFocus: writing1FocusNode,
                     ),
                   ],
                 ),
-                // Writing notları
-                Text('Writing Notları', style: TextStyle(fontSize: 16)),
-                Row(
+
+                //Writing ----------------
+                const Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Text('Writing Notları', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
+                ),
+                Column(
                   children: [
-                    Expanded(
-                      child: TextField(
-                        controller: writing1Controller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Writing 1',
-                          hintText: '0-100 arası bir değer girin',
-                        ),
-                      ),
+                    NotTextfield(
+                      title: 'Writing 1',
+                      controller: writing1Controller,
+                      focusNode: writing1FocusNode,
+                      nextFocus: writing2FocusNode,
                     ),
-                    Expanded(
-                      child: TextField(
-                        controller: writing2Controller,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Writing 2',
-                          hintText: '0-100 arası bir değer girin',
-                        ),
-                      ),
+                    NotTextfield(
+                      title: 'Writing 2',
+                      controller: writing2Controller,
+                      focusNode: writing2FocusNode,
+                      nextFocus: speakingFocusNode,
                     ),
                   ],
                 ),
-                //Speaking Grade
-                TextField(
+
+                //Speaking ----------------
+                const Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Text('Speaking Notları', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
+                ),
+                NotTextfield(
+                  title: 'Speaking',
                   controller: speakingController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Speaking Notu',
-                    hintText: '0-100 arası bir değer girin',
-                  ),
+                  focusNode: speakingFocusNode,
+                  nextFocus: instructorFocusNode,
                 ),
-                //Instructor Grade
-                TextField(
+                //Instructor ----------------
+                const Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Text('Instructor Notları', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
+                ),
+                NotTextfield(
+                  title: 'Instructor',
                   controller: instructorController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Instructor Notu',
-                    hintText: '0-100 arası bir değer girin',
-                  ),
+                  focusNode: instructorFocusNode,
+                  textInputAction: TextInputAction.done,
+                  onEditingComplete: () {
+                    //eğer formda uyarı yoksa devam et
+                    if (formKey.currentState!.validate()) {
+                      calculateThem();
+                      Navigator.of(context).push(PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          //eğer formda sorun yoksa
+                          return const ResultPageView();
+                        },
+                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                          return child; // Animasyonları devre dışı bırakmak için child'ı döndürün
+                        },
+                      ));
+                    }
+                  },
+                ),
+
+                //Buttons____________________
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          resetBoard();
+                          debugPrint('Bu buton çalışıyor!');
+                        },
+                        child: const Text('Reset'),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Exam grades have been saved.'),
+                            ),
+                          );
+                          //saveExamGrades();
+                        },
+                        child: const Text('Save Grades'),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
-
-          //Logo image inside background.
-          Center(
-            child: IgnorePointer(
-              ignoring: true,
-              child: Opacity(
-                opacity: 0.4,
-                child: Image.asset(
-                  'assets/images/Logo_of_METU.svg.png',
-                  height: 300.0,
-                  width: 300.0,
-                ),
-              ),
-            ),
-          ),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-
-
-              Flexible(
-                flex: 1,
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding:
-                    const EdgeInsets.only(left: 12,top: 16,bottom: 8), // Adjust the padding as needed
-                    child: ElevatedButton(
-                      onPressed: () {
-                        resetBoard();
-                        print('Bu buton çalışıyor!');
-                      },
-                      child: Text('Reset'),
-                    ),
-                  ),
-                ),
-              ),
-
-
-
-              Flexible(
-                flex: 1,
-                child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 8,top: 16,bottom: 8),
-                      child: DropdownUsers(),
-                    )),
-              ),
-
-
-
-              Flexible(
-                flex:1,
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding:
-                    const EdgeInsets.only(right: 8,top: 16,bottom: 8),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Exam grades have been saved.'),
-                          ),
-                        );
-                        //saveExamGrades();
-                      },
-                      child: Text('Save Grades'),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-        ],
+        ),
       ),
       floatingActionButton: Consumer<StateData>(
         builder: (context, pageIndexModel, child) {
           return FloatingActionButton(
             onPressed: () {
-              calculateThem();
-              pageIndexModel.setCurrentPageIndex(2);
-              Navigator.of(context).push(PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) {
-                  return ResultPageView();
-                },
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  return child; // Animasyonları devre dışı bırakmak için child'ı döndürün
-                },
-              ));
+              //eğer formda bilr uyarı varsa devam edemez
+              if (formKey.currentState!.validate()) {
+                calculateThem();
+                pageIndexModel.setCurrentPageIndex(2);
+                Navigator.of(context).push(PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    //eğer formda sorun yoksa
+
+                    return const ResultPageView();
+                  },
+                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    return child; // Animasyonları devre dışı bırakmak için child'ı döndürün
+                  },
+                ));
+              }
             },
-            child: Icon(Icons.equalizer),
+            child: const Icon(Icons.equalizer),
           );
         },
       ),
-      //floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-      bottomNavigationBar: FooterNavigationBar(),
+      bottomNavigationBar: const FooterNavigationBar(),
+    );
+  }
+}
+
+class NotTextfield extends StatelessWidget {
+  const NotTextfield({
+    super.key,
+    required this.controller,
+    required this.title,
+    this.textInputAction = TextInputAction.next,
+    this.padding = const EdgeInsets.only(bottom: 15),
+    required this.focusNode,
+    this.nextFocus,
+    this.onEditingComplete,
+  });
+
+  final TextEditingController controller;
+  final String title;
+  final TextInputAction textInputAction;
+  final EdgeInsetsGeometry padding;
+  final FocusNode focusNode;
+  final FocusNode? nextFocus;
+  final Function? onEditingComplete;
+
+  @override
+  Widget build(BuildContext context) {
+    final GlobalKey<FormFieldState> fieldKey = GlobalKey<FormFieldState>();
+
+    return Padding(
+      padding: padding,
+      child: TextFormField(
+        controller: controller,
+        focusNode: focusNode,
+        key: fieldKey,
+        keyboardType: TextInputType.number,
+        textInputAction: textInputAction,
+        inputFormatters: [
+          FilteringTextInputFormatter.digitsOnly,
+          LengthLimitingTextInputFormatter(3),
+        ],
+        onEditingComplete: () {
+          fieldKey.currentState!.validate();
+          if (onEditingComplete == null) {
+            if (nextFocus == null) {
+              if (textInputAction == TextInputAction.next) {
+                FocusScope.of(context).nextFocus();
+              } else if (textInputAction == TextInputAction.done) {
+                FocusScope.of(context).unfocus();
+              }
+            } else if (nextFocus != null) {
+              FocusScope.of(context).requestFocus(nextFocus);
+            } else {
+              onEditingComplete!();
+            }
+          }
+        },
+        validator: (value) {
+          if (value != null && double.tryParse(value) != null && double.parse(value) > 100) {
+            return '100 den büyük olamaz';
+          }
+          return null;
+        },
+        decoration: InputDecoration(
+          labelText: title,
+          labelStyle: const TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500),
+          border: const OutlineInputBorder(),
+
+          //FOCUS Style
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black, width: 2.0),
+          ),
+          focusColor: Colors.blue,
+          //ERROR STYLE
+        ),
+      ),
     );
   }
 }

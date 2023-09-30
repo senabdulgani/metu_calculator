@@ -17,23 +17,21 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: true,
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       centerTitle: true,
-      title: Padding(
-        padding: const EdgeInsets.all(8.0),
+      title: const Padding(
+        padding: EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/images/Logo_of_METU.svg.png',
-              width: 30,
-              height: 30,
+            Text(
+              'Fucking Calculator',
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
             ),
-            Text('dbe calculator.'),
           ],
         ),
       ),
       // leading: IconButton(
       //   icon: Icon(Icons.menu),
       //   onPressed: openDrawer, // Çekmeyi açmak için belirtilen işlevi çağırın
-      );
+    );
   }
 }
