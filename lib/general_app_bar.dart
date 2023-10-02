@@ -19,21 +19,17 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       title: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Row(
           children: [
             Image.asset(
               'assets/images/Logo_of_METU.svg.png',
               width: 30,
               height: 30,
             ),
-            Text('dbe calculator.'),
+            Text('DBE Calculator.'),
           ],
         ),
       ),
-      // leading: IconButton(
-      //   icon: Icon(Icons.menu),
-      //   onPressed: openDrawer, // Çekmeyi açmak için belirtilen işlevi çağırın
       );
   }
 }

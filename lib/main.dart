@@ -1,9 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:metu_calculator/Chat%20Page%20View/chat_page_view.dart';
+import 'package:metu_calculator/Chat%20Page%20View/timer_countdown_view.dart';
 import 'package:metu_calculator/firebase_options.dart';
 import 'package:metu_calculator/home_page.dart';
-
 import 'splash_screen.dart';
 import 'state_data.dart';
 import 'package:provider/provider.dart';
@@ -13,18 +12,15 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final gradesProvider = GradesProvider();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-);
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
 
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => StateData()),
-        ChangeNotifierProvider(create: (context) => GradesProvider()),
-        // Diğer Provider sınıflarını buraya ekleyebilirsiniz
+        // Diğer Provider sınıflarını buraya ekleyebilirsin
       ],
       child: const MyApp(),
     ),

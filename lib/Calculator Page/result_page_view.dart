@@ -31,7 +31,7 @@ class _ResultPageViewState extends State<ResultPageView> {
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.25, // Ekranın 1/4'ü kadar yükseklik
-              child: Center(
+              child: const Center(
                 child: Text('Buraya istediğiniz içeriği ekleyin'),
               ),
             ),
@@ -51,7 +51,7 @@ class _ResultPageViewState extends State<ResultPageView> {
     final pageIndexModel = Provider.of<StateData>(context);
 
     return Scaffold(
-      appBar: MainAppBar(),
+      appBar: const MainAppBar(),
       body: Stack(children: [
         //darkOverlay,
         Visibility(
@@ -60,19 +60,19 @@ class _ResultPageViewState extends State<ResultPageView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Result Page ',
                   style: TextStyle(fontSize: 32),
                 ),
-                Text(
+                const Text(
                   'Your Average Grade: ',
                   style: TextStyle(fontSize: 18),
                 ),
                 Text(
                   result.toStringAsFixed(1),
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 InkWell(
@@ -85,14 +85,14 @@ class _ResultPageViewState extends State<ResultPageView> {
                       child: Image.asset(
                           'assets/images/png-transparent-incandescent-light-bulb-emoji-lighting-infrared-flashlight-electronics-hand-color-thumbnail.png')),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 GestureDetector(
                   onTap: (){
                     openBottomSheet(context);
                   },
-                  child: Text(
+                  child: const Text(
                     'Did you get any advice?',
                     style: TextStyle(fontSize: 16, color: Colors.blue),
                   ),
@@ -102,7 +102,7 @@ class _ResultPageViewState extends State<ResultPageView> {
           ),
         ),
       ]),
-      bottomNavigationBar: FooterNavigationBar(),
+      bottomNavigationBar: const FooterNavigationBar(),
 
     );
   }

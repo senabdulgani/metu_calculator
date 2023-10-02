@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:metu_calculator/home_page.dart';
 import 'package:provider/provider.dart';
-import '../Chat Page View/chat_page_view.dart';
+import '../Chat Page View/timer_countdown_view.dart';
 import '../Calculator Page/calculator_page.dart';
 import '../state_data.dart';
 import 'footer_navigator.dart';
@@ -45,14 +45,14 @@ class _FooterNavigationBarState extends State<FooterNavigationBar> {
             pageIndexModel.setCurrentPageIndex(1);
             break;
           case 2:
-            // Navigator.push(
-            //   context,
-            //   PageRouteBuilder(
-            //     pageBuilder: (context, animation, secondaryAnimation) =>
-            //         CalculatorPage(),
-            //     transitionDuration: Duration(seconds: 0),
-            //   ),
-            // );
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    CalculatorPage(),
+                transitionDuration: Duration(seconds: 0),
+              ),
+            );
             pageIndexModel.setCurrentPageIndex(2);
             break;
         }
