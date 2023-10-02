@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:metu_calculator/Chat%20Page%20View/timer_countdown_view.dart';
-import 'package:metu_calculator/firebase_options.dart';
-import 'package:metu_calculator/home_page.dart';
+import 'package:metu_calculator/timer_countdown_view.dart';
+import 'package:metu_calculator/Firebase%20Docs/firebase_options.dart';
+import 'package:metu_calculator/Main Page/home_page.dart';
 import 'splash_screen.dart';
-import 'state_data.dart';
+import 'Main Page/state_data.dart';
 import 'package:provider/provider.dart';
 
 
@@ -36,19 +36,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
-        useMaterial3: true,
-      ),
-      //home: Splash(),
-      initialRoute: '/',
-
-      routes: {
-        '/': (context)=> Splash(),
-        '/homePage': (context)=> MainMenuStarting(),
-        '/chatDisplay': (context) => TimerCountDown(),
-
-      },
-    );
+        useMaterial3: true,),
+      );
   }
 }
 
