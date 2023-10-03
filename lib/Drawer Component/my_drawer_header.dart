@@ -4,7 +4,7 @@ class MyDrawerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.deepOrange[300],
+      color: Colors.red[300],
       width: double.infinity,
       height: 200,
       padding: EdgeInsets.only(top: 20.0),

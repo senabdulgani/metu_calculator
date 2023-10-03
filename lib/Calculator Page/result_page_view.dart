@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:metu_calculator/state_data.dart';
+import 'package:metu_calculator/Main%20Page/state_data.dart';
 import 'package:provider/provider.dart';
 import '../Footer Bar/footer_navigation_bar_view.dart';
-import '../general_app_bar.dart';
+import '../Constant/general_app_bar.dart';
 
 
 class ResultPageView extends StatefulWidget {

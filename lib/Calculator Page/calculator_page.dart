@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:metu_calculator/grades_store.dart';
-import 'package:metu_calculator/state_data.dart';
+import 'package:metu_calculator/Calculator%20Page/grades_store.dart';
+import 'package:metu_calculator/Main%20Page/state_data.dart';
 import 'package:provider/provider.dart';
 import 'result_page_view.dart';
 import '../Footer Bar/footer_navigation_bar_view.dart';
-import '../general_app_bar.dart';
+import '../Constant/general_app_bar.dart';
 
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({super.key, this.title});
@@ -143,8 +143,8 @@ class _CalculatorPage extends State<CalculatorPage> {
     super.initState();
     UserGrades().veriOku();
   }
-  List<TextEditingController> gradeControllers =
-      List.generate(11, (_) => TextEditingController());
+  // List<TextEditingController> gradeControllers =
+  //     List.generate(11, (_) => TextEditingController());
 
   //ResultPageView resulPageInstance = new ResultPageView();
 
@@ -281,7 +281,7 @@ class _CalculatorPage extends State<CalculatorPage> {
                       child: ElevatedButton(
                         onPressed: () {
                           resetBoard();
-                          debugPrint('Bu buton çalışıyor!');
+                          debugPrint('Bu buton calisiyor!');
                         },
                         child: const Text('Reset'),
                       ),
@@ -295,8 +295,8 @@ class _CalculatorPage extends State<CalculatorPage> {
                               content: Text('Exam grades have been saved.'),
                             ),
                           );
-                          //saveExamGrades();
-                        },
+                          UserGrades().veriKaydet();
+                          },
                         child: const Text('Save Grades'),
                       ),
                     ),
@@ -311,10 +311,10 @@ class _CalculatorPage extends State<CalculatorPage> {
         builder: (context, pageIndexModel, child) {
           return FloatingActionButton(
             onPressed: () {
-              //eğer formda bilr uyarı varsa devam edemez
+              //eğer formda bile uyarı varsa devam edemez
               if (formKey.currentState!.validate()) {
                 calculateThem();
-                pageIndexModel.setCurrentPageIndex(2);
+                pageIndexModel.setCurrentPageIndex(1);
                 Navigator.of(context).push(PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) {
                     //eğer formda sorun yoksa

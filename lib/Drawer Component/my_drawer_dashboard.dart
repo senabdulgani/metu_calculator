@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:metu_calculator/state_data.dart';
+import 'package:metu_calculator/Settings_Page_View/setting_page_view.dart';
+import 'package:metu_calculator/Main%20Page/state_data.dart';
 import 'package:provider/provider.dart';
 
 
@@ -11,17 +12,17 @@ class MyDrawerDashboard extends StatelessWidget {
 
     return Column(
       children: [
-        /*DrawerListTileComponent(iconText: 'Save your grades.',iconType: Icons.add_box_outlined,goTOPage: (){
+        DrawerListTileComponent(iconText: 'Settings',iconType: Icons.settings,goTOPage: (){
           Navigator.push(
             context,
             PageRouteBuilder(
               pageBuilder: (context, animation, secondaryAnimation) =>
-                  CalculatorPageBodyComponent(),
+                  SettingsPageView(),
               transitionDuration: Duration(seconds: 0),
             ),
           );
-          pageIndexModel.setCurrentPageIndex(2);
-        },),*/
+          pageIndexModel.setCurrentPageIndex(0);
+        },),
         DrawerListTileComponent(iconText: 'Account',iconType: Icons.login_outlined),
       ],
     );
@@ -30,7 +31,7 @@ class MyDrawerDashboard extends StatelessWidget {
 
 class DrawerListTileComponent extends StatelessWidget {
 
-  DrawerListTileComponent({
+  const DrawerListTileComponent({
     super.key,required this.iconType,required this.iconText,this.goTOPage
   });
 
