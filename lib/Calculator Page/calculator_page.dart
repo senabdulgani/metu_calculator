@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:metu_calculator/Calculator%20Page/grades_store.dart';
@@ -16,6 +15,7 @@ class CalculatorPage extends StatefulWidget {
   @override
   State<CalculatorPage> createState() => _CalculatorPage();
 }
+
 TextEditingController midterm1Controller = TextEditingController();
 TextEditingController midterm2Controller = TextEditingController();
 TextEditingController quiz1Controller = TextEditingController();
@@ -45,7 +45,6 @@ final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 @override
 class _CalculatorPage extends State<CalculatorPage> {
-  
   void resetBoard() {
     midterm1Controller.clear();
     midterm2Controller.clear();
@@ -136,7 +135,6 @@ class _CalculatorPage extends State<CalculatorPage> {
 
     setState(() {});
   }
-
 
   @override
   void initState() {
@@ -296,7 +294,7 @@ class _CalculatorPage extends State<CalculatorPage> {
                             ),
                           );
                           UserGrades().veriKaydet();
-                          },
+                        },
                         child: const Text('Save Grades'),
                       ),
                     ),
@@ -409,7 +407,4 @@ class NotTextfield extends StatelessWidget {
       ),
     );
   }
-  
-
 }
-  
