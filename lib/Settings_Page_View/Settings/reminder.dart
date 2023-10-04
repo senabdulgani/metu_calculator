@@ -47,7 +47,7 @@ class _ReminderPageViewState extends State<ReminderPageView> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                _showAddReminderDialog(context);
+                showAddReminderDialog(context);
               },
               child: const Text('Add Reminder'),
             ),
@@ -57,7 +57,7 @@ class _ReminderPageViewState extends State<ReminderPageView> {
     );
   }
 
-  void _showAddReminderDialog(BuildContext context) {
+  void showAddReminderDialog(BuildContext context) {
     
     TextEditingController reminderController = TextEditingController();
     TextEditingController dateController = TextEditingController();

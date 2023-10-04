@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
+import 'package:metu_calculator/Admin%20Paneli/admin_panel.dart';
 import 'package:metu_calculator/Drawer%20Component/my_drawer_dashboard.dart';
 import 'package:metu_calculator/Firebase_sevice.dart/firebase_service.dart';
 
@@ -61,7 +62,19 @@ class TimerCountDown extends StatelessWidget {
         ElevatedButton(onPressed: (){
           firebaseService.addDataToFirestore();        
           },
-         child: Text('Firebase çalıştır.'))
+         child: Text('Firebase çalıştır.')),
+         const SizedBox(height: 20),
+        ElevatedButton(onPressed: (){
+          Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    AdminPanel(),
+                transitionDuration: Duration(seconds: 0),
+              ),
+            );
+                  },
+         child: Text('Admin Panel Giriş'))
       ],
     );
   }
