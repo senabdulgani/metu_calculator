@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:metu_calculator/Calculator%20Page/grades_store.dart';
@@ -146,6 +147,7 @@ class _CalculatorPage extends State<CalculatorPage> {
 
   //ResultPageView resulPageInstance = new ResultPageView();
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MainAppBar(),

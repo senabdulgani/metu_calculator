@@ -3,24 +3,28 @@ import 'package:flutter/material.dart';
 
 class FirebaseService {
   //addData
-  Future<void> addDataToFirestore() async {
+  Future<void> addFeedback(String feedbackText) async {
     try {
       CollectionReference users = FirebaseFirestore.instance.collection('feedback');
-      String newData = '123123123!';
-      await users.add({'fieldname': newData});
-      debugPrint('Data added to Firestore: $newData');
+
+      await users.add({'fieldname': feedbackText});
     } catch (e) {
       debugPrint('Error adding data to Firestore: $e');
     }
   }
 
   //getData
-  Future<void> getDataFromFirestore() async {
+  Future<String> getExamDate() async {
     try {
-      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('collection_adi').doc('document_adi').get();
-      debugPrint('Data from Firestore: ${documentSnapshot.data()}');
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('examDate').doc('date').get();
+
+      debugPrint('gelen data: ${documentSnapshot.data()}');
+
+      return documentSnapshot.data().toString();
     } catch (e) {
-      debugPrint('Error fetching data from Firestore: $e');
+      debugPrint('HATA!: $e');
+      //null
+      return "Veri hatası";
     }
   }
 

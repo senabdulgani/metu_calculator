@@ -2,9 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'calculator_page.dart';
 
 class UserGrades {
-
   veriKaydet() async {
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString("midterm1controller", midterm1Controller.text);
     await prefs.setString("midterm2controller", midterm2Controller.text);
@@ -17,10 +15,9 @@ class UserGrades {
     await prefs.setString("writing2controller", writing2Controller.text);
     await prefs.setString("speakingcontroller", speakingController.text);
     await prefs.setString("instructorcontroller", instructorController.text);
-    
   }
 
-  veriOku()async{
+  veriOku() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     midterm1Controller.text = prefs.getString("midterm1controller")!;
     midterm2Controller.text = prefs.getString("midterm2controller")!;
@@ -33,5 +30,5 @@ class UserGrades {
     writing2Controller.text = prefs.getString("writing2controller")!;
     speakingController.text = prefs.getString("speakingcontroller")!;
     instructorController.text = prefs.getString("instructorcontroller")!;
-    }
+  }
 }
