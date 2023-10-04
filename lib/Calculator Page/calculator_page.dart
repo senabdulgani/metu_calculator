@@ -16,6 +16,7 @@ class CalculatorPage extends StatefulWidget {
   @override
   State<CalculatorPage> createState() => _CalculatorPage();
 }
+
 TextEditingController midterm1Controller = TextEditingController();
 TextEditingController midterm2Controller = TextEditingController();
 TextEditingController quiz1Controller = TextEditingController();
@@ -45,7 +46,6 @@ final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 @override
 class _CalculatorPage extends State<CalculatorPage> {
-  
   void resetBoard() {
     midterm1Controller.clear();
     midterm2Controller.clear();
@@ -137,7 +137,6 @@ class _CalculatorPage extends State<CalculatorPage> {
     setState(() {});
   }
 
-
   @override
   void initState() {
     super.initState();
@@ -148,6 +147,7 @@ class _CalculatorPage extends State<CalculatorPage> {
 
   //ResultPageView resulPageInstance = new ResultPageView();
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MainAppBar(),
@@ -296,7 +296,7 @@ class _CalculatorPage extends State<CalculatorPage> {
                             ),
                           );
                           UserGrades().veriKaydet();
-                          },
+                        },
                         child: const Text('Save Grades'),
                       ),
                     ),
@@ -409,7 +409,4 @@ class NotTextfield extends StatelessWidget {
       ),
     );
   }
-  
-
 }
-  

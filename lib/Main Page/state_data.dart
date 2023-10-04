@@ -1,9 +1,6 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class StateData with ChangeNotifier{
-
+class StateData with ChangeNotifier {
   double result = 4.7;
 
   void updateResult(double newResult) {
@@ -18,9 +15,6 @@ class StateData with ChangeNotifier{
     _currentPageIndex = index;
     notifyListeners(); // Değişiklikleri dinleyen widgetları güncelle
 
-
-
-  String selectedTheme = 'Light'; // Initially set to Light theme
-  
+    // String selectedTheme = 'Light'; // Initially set to Light theme
   }
 }

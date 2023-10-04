@@ -4,24 +4,19 @@ import 'package:provider/provider.dart';
 import '../Footer Bar/footer_navigation_bar_view.dart';
 import '../Constant/general_app_bar.dart';
 
-
 class ResultPageView extends StatefulWidget {
   const ResultPageView({super.key});
-
 
   @override
   State<ResultPageView> createState() => _ResultPageViewState();
 }
 
-
 class _ResultPageViewState extends State<ResultPageView> {
-
   final String? title = 'result page';
   int currentPageIndex = 0;
   bool isAdvicePageActive = false;
   bool isFooterBarActive = true;
   double containerHeight = 0.0;
-
 
   void openBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -29,7 +24,7 @@ class _ResultPageViewState extends State<ResultPageView> {
       builder: (BuildContext context) {
         return Stack(
           children: [
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.25, // Ekranın 1/4'ü kadar yükseklik
               child: const Center(
                 child: Text('Buraya istediğiniz içeriği ekleyin'),
@@ -41,14 +36,11 @@ class _ResultPageViewState extends State<ResultPageView> {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     double result = Provider.of<StateData>(context).result;
-    int currentPageIndex = Provider.of<StateData>(context).currentPageIndex;
-    final pageIndexModel = Provider.of<StateData>(context);
+    // int currentPageIndex = Provider.of<StateData>(context).currentPageIndex;
+    // final pageIndexModel = Provider.of<StateData>(context);
 
     return Scaffold(
       appBar: const MainAppBar(),
@@ -79,17 +71,13 @@ class _ResultPageViewState extends State<ResultPageView> {
                   onTap: () {
                     openBottomSheet(context);
                   },
-                  child: Container(
-                      width: 50,
-                      height: 50,
-                      child: Image.asset(
-                          'assets/images/png-transparent-incandescent-light-bulb-emoji-lighting-infrared-flashlight-electronics-hand-color-thumbnail.png')),
+                  child: Container(width: 50, height: 50, child: Image.asset('assets/images/png-transparent-incandescent-light-bulb-emoji-lighting-infrared-flashlight-electronics-hand-color-thumbnail.png')),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     openBottomSheet(context);
                   },
                   child: const Text(
@@ -103,7 +91,6 @@ class _ResultPageViewState extends State<ResultPageView> {
         ),
       ]),
       bottomNavigationBar: const FooterNavigationBar(),
-
     );
   }
 }
@@ -113,9 +100,6 @@ Widget darkOverlay = Positioned.fill(
     onTap: () {
       // Arka plana tıklanınca modal ekranı kapatın
     },
-    child: Container(
-
-    ),
+    child: Container(),
   ),
 );
-

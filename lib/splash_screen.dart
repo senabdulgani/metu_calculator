@@ -9,42 +9,38 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-
   @override
-  void initState(){
+  void initState() {
     super.initState();
     navigatetohome();
   }
 
-
   navigatetohome() async {
-    await Future.delayed(Duration(milliseconds: 1500), () {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => MainMenuStarting(
-                  )));
+    await Future.delayed(const Duration(milliseconds: 1500), () {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MainMenuStarting()));
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/metu_calculator mobil app.png',
-                height: 300.0,
-                width: 300.0,
-              ),
-              SizedBox(height: 16.0),
-              CircularProgressIndicator(color: Colors.black,),
-            ],
-          ),
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/metu_calculator mobil app.png',
+              height: 300.0,
+              width: 300.0,
+            ),
+            const SizedBox(height: 16.0),
+            const CircularProgressIndicator(
+              color: Colors.black,
+            ),
+          ],
         ),
+      ),
     );
   }
 }

@@ -1,9 +1,6 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class StateData with ChangeNotifier{
-
+class StateData with ChangeNotifier {
   double result = 4.7;
 
   void updateResult(double newResult) {

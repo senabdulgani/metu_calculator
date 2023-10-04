@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:metu_calculator/Firebase_sevice.dart/firebase_service.dart';
 
 class FeedbackPageView extends StatefulWidget {
+  const FeedbackPageView({super.key});
+
   @override
   State<FeedbackPageView> createState() => _FeedbackPageViewState();
 }
 
 class _FeedbackPageViewState extends State<FeedbackPageView> {
   String feedback = '';
+
+  final FirebaseService firebaseService = FirebaseService(); // FirebaseService sınıfından bir örnek oluşturun
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +73,12 @@ class _FeedbackPageViewState extends State<FeedbackPageView> {
                   ),
                 ),
               ),
-              
               const SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    // Geri bildirim gönderme işlemini burada gerçekleştirin
-                    // Örneğin, bir API çağrısı yapabilirsiniz
+                    firebaseService.addFeedback(feedback);
+
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Geri bildiriminiz gönderildi!'),

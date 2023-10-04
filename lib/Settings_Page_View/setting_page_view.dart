@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:metu_calculator/Profile/profile_page_view.dart';
 import 'package:metu_calculator/Settings_Page_View/Settings/notification.dart';
-import 'package:metu_calculator/Settings_Page_View/Settings/reminder.dart';
 import 'package:metu_calculator/Settings_Page_View/language_view.dart';
 import 'package:metu_calculator/Settings_Page_View/login_page_view.dart';
 
@@ -37,8 +36,7 @@ class SettingsPageView extends StatelessWidget {
                       //eğer formda sorun yoksa
                       return const ProfilePageView();
                     },
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
+                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
                       return child; // Animasyonları devre dışı bırakmak için child'ı döndürün
                     },
                   ));
@@ -46,9 +44,7 @@ class SettingsPageView extends StatelessWidget {
               ),
             ),
           ),
-          _buildSettingsItem("Theme", onTap: () {
-
-          }),
+          _buildSettingsItem("Theme", onTap: () {}),
           _buildSettingsItem(
             "Notifications",
             onTap: () {
@@ -61,7 +57,8 @@ class SettingsPageView extends StatelessWidget {
               );
             },
           ),
-          _buildSettingsItem("Language",
+          _buildSettingsItem(
+            "Language",
             onTap: () {
               Navigator.of(context).push(
                 PageRouteBuilder(
@@ -70,8 +67,10 @@ class SettingsPageView extends StatelessWidget {
                   },
                 ),
               );
-            },),
-          _buildSettingsItem("Log-in",
+            },
+          ),
+          _buildSettingsItem(
+            "Log-in",
             onTap: () {
               Navigator.of(context).push(
                 PageRouteBuilder(
@@ -80,7 +79,8 @@ class SettingsPageView extends StatelessWidget {
                   },
                 ),
               );
-            },),
+            },
+          ),
         ],
       ),
     );

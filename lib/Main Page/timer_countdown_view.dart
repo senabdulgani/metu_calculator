@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:metu_calculator/Admin%20Paneli/admin_panel.dart';
-import 'package:metu_calculator/Drawer%20Component/my_drawer_dashboard.dart';
 import 'package:metu_calculator/Firebase_sevice.dart/firebase_service.dart';
 
 class TimerCountDown extends StatelessWidget {
+  final FirebaseService firebaseService = FirebaseService();
 
-  final FirebaseService firebaseService = FirebaseService(); // FirebaseService sınıfından bir örnek oluşturun
-
-
+  TimerCountDown({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Get the current date and time
-    DateTime now = DateTime.now();
-
-    // Define your exam day (adjust this date as needed)
+    //Buraya "firebaseService.getExamDate();" eklenecek. tarih buradan alınacak
     DateTime examDay = DateTime(2024, 6, 1, 9, 0);
 
     // Calculate the end time for the countdown by subtracting the time difference between now and the exam day from the exam day itself
-    DateTime time = examDay.subtract(now.difference(examDay));
+    // DateTime time = examDay.subtract(now.difference(examDay));
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -37,14 +32,14 @@ class TimerCountDown extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: const Color.fromARGB(255, 230, 94, 94), // Background color for the timer
+            color: const Color.fromARGB(255, 230, 94, 94),
           ),
           padding: const EdgeInsets.all(10),
           child: TimerCountdown(
             format: CountDownTimerFormat.daysHoursMinutesSeconds,
             endTime: examDay,
             onEnd: () {
-              print("Timer finished...");
+              debugPrint("Timer finished...");
             },
             timeTextStyle: const TextStyle(
               fontSize: 20,
@@ -59,11 +54,7 @@ class TimerCountDown extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        ElevatedButton(onPressed: (){
-          firebaseService.addDataToFirestore();        
-          },
-         child: Text('Firebase çalıştır.')),
-         const SizedBox(height: 20),
+        
         ElevatedButton(onPressed: (){
           Navigator.push(
               context,

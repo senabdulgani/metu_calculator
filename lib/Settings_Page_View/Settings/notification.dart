@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:metu_calculator/Settings_Page_View/setting_page_view.dart';
 
 class Notifications extends StatelessWidget {
+  const Notifications({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

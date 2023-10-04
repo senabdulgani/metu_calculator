@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ReminderPageView extends StatefulWidget {
+  const ReminderPageView({super.key});
+
   @override
   _ReminderPageViewState createState() => _ReminderPageViewState();
 }
 
 class _ReminderPageViewState extends State<ReminderPageView> {
-  
   // Store user-created reminders here.
-  List<String> reminders = []; 
+  List<String> reminders = [];
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +63,7 @@ class _ReminderPageViewState extends State<ReminderPageView> {
     TextEditingController reminderController = TextEditingController();
     TextEditingController dateController = TextEditingController();
     DateTime? selectedDate;
-    String errorMessage = '';
-
+    // String errorMessage = '';
 
     showDialog(
       context: context,
@@ -78,23 +78,22 @@ class _ReminderPageViewState extends State<ReminderPageView> {
                 decoration: const InputDecoration(labelText: 'Enter reminder text'),
               ),
               TextField(
-              controller: dateController,
-              readOnly: true, // Make the text field read-only.
-              decoration: const InputDecoration(labelText: 'Select Date'),
-              onTap: () async {
-                selectedDate = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime.now(),
-                  lastDate: DateTime(DateTime.now().year + 5),
-                );
+                controller: dateController,
+                readOnly: true, // Make the text field read-only.
+                decoration: const InputDecoration(labelText: 'Select Date'),
+                onTap: () async {
+                  selectedDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime(DateTime.now().year + 5),
+                  );
 
-                if (selectedDate != null) {
-                  dateController.text =
-                      '${selectedDate!.month}/${selectedDate!.day}/${selectedDate!.year}';
-                }
-              },
-            ),
+                  if (selectedDate != null) {
+                    dateController.text = '${selectedDate!.month}/${selectedDate!.day}/${selectedDate!.year}';
+                  }
+                },
+              ),
             ],
           ),
           actions: [
@@ -105,24 +104,24 @@ class _ReminderPageViewState extends State<ReminderPageView> {
               child: const Text('Cancel'),
             ),
             TextButton(
-            onPressed: () {
-              String reminderText = reminderController.text;
-              String dateText = dateController.text;
+              onPressed: () {
+                String reminderText = reminderController.text;
+                String dateText = dateController.text;
 
-              if (reminderText.isEmpty || dateText.isEmpty) {
-                setState(() {
-                  errorMessage = 'Both fields are required!';
-                });
-              } else {
-                setState(() {
-                  reminders.add('$reminderText\nDate: $dateText');
-                  errorMessage = ''; // Clear any previous error message.
-                });
-                Navigator.of(context).pop(); // Close the dialog.
-              }
-            },
-            child: const Text('Add'),
-          ),
+                if (reminderText.isEmpty || dateText.isEmpty) {
+                  setState(() {
+                    // errorMessage = 'Both fields are required!';
+                  });
+                } else {
+                  setState(() {
+                    reminders.add('$reminderText\nDate: $dateText');
+                    // errorMessage = ''; // Clear any previous error message.
+                  });
+                  Navigator.of(context).pop(); // Close the dialog.
+                }
+              },
+              child: const Text('Add'),
+            ),
           ],
         );
       },
