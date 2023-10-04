@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:metu_calculator/Profile/profile_page_view.dart';
-import 'package:metu_calculator/Settings/notification.dart';
-import 'package:metu_calculator/Settings/reminder.dart';
+import 'package:metu_calculator/Settings_Page_View/Settings/notification.dart';
+import 'package:metu_calculator/Settings_Page_View/Settings/reminder.dart';
 import 'package:metu_calculator/Settings_Page_View/language_view.dart';
-import 'package:metu_calculator/login_page_view.dart';
+import 'package:metu_calculator/Settings_Page_View/login_page_view.dart';
 
 class SettingsPageView extends StatelessWidget {
   const SettingsPageView({super.key});
@@ -20,7 +20,7 @@ class SettingsPageView extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(top: 15, bottom: 15),
+            padding: const EdgeInsets.only(top: 15, bottom: 15),
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
@@ -35,7 +35,7 @@ class SettingsPageView extends StatelessWidget {
                   Navigator.of(context).push(PageRouteBuilder(
                     pageBuilder: (context, animation, secondaryAnimation) {
                       //eğer formda sorun yoksa
-                      return ProfilePageView();
+                      return const ProfilePageView();
                     },
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
@@ -61,16 +61,6 @@ class SettingsPageView extends StatelessWidget {
               );
             },
           ),
-          _buildSettingsItem("Reminders",
-            onTap: () {
-              Navigator.of(context).push(
-                PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) {
-                    return ReminderPageView();
-                  },
-                ),
-              );
-            },),
           _buildSettingsItem("Language",
             onTap: () {
               Navigator.of(context).push(

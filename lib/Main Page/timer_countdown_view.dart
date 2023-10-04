@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
+import 'package:metu_calculator/Drawer%20Component/my_drawer_dashboard.dart';
+import 'package:metu_calculator/Firebase_sevice.dart/firebase_service.dart';
 
 class TimerCountDown extends StatelessWidget {
+
+  final FirebaseService firebaseService = FirebaseService(); // FirebaseService sınıfından bir örnek oluşturun
+
+
+
   @override
   Widget build(BuildContext context) {
     // Get the current date and time
@@ -50,6 +57,11 @@ class TimerCountDown extends StatelessWidget {
             ),
           ),
         ),
+        const SizedBox(height: 20),
+        ElevatedButton(onPressed: (){
+          firebaseService.addDataToFirestore();        
+          },
+         child: Text('Firebase çalıştır.'))
       ],
     );
   }

@@ -26,10 +26,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -58,5 +55,14 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1087048801658',
     projectId: 'metucalculator-723aa',
     storageBucket: 'metucalculator-723aa.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyCHoHTgZsEz44XyaHHgKQtJTwPaA3QoSWY',
+    appId: '1:1087048801658:ios:f3baac124cdeae6db7cac3',
+    messagingSenderId: '1087048801658',
+    projectId: 'metucalculator-723aa',
+    storageBucket: 'metucalculator-723aa.appspot.com',
+    iosBundleId: 'com.example.metuCalculator',
   );
 }

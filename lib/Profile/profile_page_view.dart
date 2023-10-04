@@ -33,45 +33,56 @@ class _ProfilePageViewState extends State<ProfilePageView> {
           ),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: ListView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center, // Center vertically
               children: <Widget>[
-                const ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage('assets/images/my_photo.jpg'),
-                  ),
-                ),
-                ListTile(
-                  title: Text(
-                    name,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                const Center( // Center horizontally and vertically
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage('assets/images/my_photo.jpg'),
                     ),
                   ),
                 ),
                 ListTile(
-                  subtitle: Text(
-                    email,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.grey,
+                  title: Center( // Center horizontally
+                    child: Text(
+                      name,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                  trailing: const Icon(Icons.edit, color: Colors.grey),
                 ),
                 ListTile(
-                  title: Text(
-                    'Password: $password',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.grey,
+                  subtitle: Center( // Center horizontally
+                    child: Text(
+                      email,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
                   trailing: const Icon(Icons.edit, color: Colors.grey),
                 ),
                 ListTile(
-                  title: TextFormField(),
+                  title: Center( // Center horizontally
+                    child: Text(
+                      'Password: $password',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                  trailing: const Icon(Icons.edit, color: Colors.grey),
+                ),
+                ListTile(
+                  title: Center( // Center horizontally
+                    child: TextFormField(),
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () {
