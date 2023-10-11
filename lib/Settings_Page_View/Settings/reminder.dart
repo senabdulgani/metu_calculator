@@ -9,7 +9,8 @@ class ReminderPageView extends StatefulWidget {
 
 class _ReminderPageViewState extends State<ReminderPageView> {
   // Store user-created reminders here.
-  List<String> reminders = [];
+
+  List<Widget> reminders = []; 
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class _ReminderPageViewState extends State<ReminderPageView> {
               itemCount: reminders.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(reminders[index]),
+                  title: Text('merhaba'),
                   trailing: IconButton(
                     icon: const Icon(Icons.delete),
                     onPressed: () {
@@ -114,7 +115,7 @@ class _ReminderPageViewState extends State<ReminderPageView> {
                   });
                 } else {
                   setState(() {
-                    reminders.add('$reminderText\nDate: $dateText');
+                    reminders.add(Container(child: Text('Bu listedeki container.'),));
                     // errorMessage = ''; // Clear any previous error message.
                   });
                   Navigator.of(context).pop(); // Close the dialog.

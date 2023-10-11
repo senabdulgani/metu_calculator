@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:metu_calculator/Firebase_sevice.dart/firebase_service.dart';
 
 class AdminPanel extends StatefulWidget {
   @override
@@ -6,10 +7,14 @@ class AdminPanel extends StatefulWidget {
 }
 
 class _AdminPanelState extends State<AdminPanel> {
+  
   DateTime? selectedDate;
   TextEditingController reminderController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   String errorMessage = '';
+ //tarih verisini çek.
+  late String tarih;
+  final FirebaseService firebaseService = FirebaseService();
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +32,11 @@ class _AdminPanelState extends State<AdminPanel> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextField(
-                controller: reminderController,
-                decoration:
-                    const InputDecoration(labelText: 'Enter reminder text'),
-              ),
+              Text('${firebaseService.getExamDate().toString()}'),
               TextField(
                 controller: dateController,
                 readOnly: true, // Make the text field read-only.
-                decoration: const InputDecoration(labelText: 'Select Date'),
+                decoration: InputDecoration(labelText: '$selectedDate'),
                 onTap: () async {
                   selectedDate = await showDatePicker(
                     context: context,
