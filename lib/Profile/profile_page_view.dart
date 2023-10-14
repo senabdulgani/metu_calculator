@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:metu_calculator/Settings_Page_View/setting_page_view.dart';
 
 class ProfilePageView extends StatefulWidget {
   const ProfilePageView({Key? key}) : super(key: key);
@@ -8,9 +9,15 @@ class ProfilePageView extends StatefulWidget {
 }
 
 class _ProfilePageViewState extends State<ProfilePageView> {
-  String name = 'John Doe';
-  String email = 'john.doe@example.com';
-  String password = '********';
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  late String name = passwordController.text;
+  late String email = emailController.text;
+  String password = 'sifre';
+  
+  bool editMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +25,8 @@ class _ProfilePageViewState extends State<ProfilePageView> {
       backgroundColor: Colors.red,
       body: Center(
         child: Container(
-          width: 300,
-          height: 500,
+          width: 350,
+          height: 750,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20.0),
@@ -34,68 +41,141 @@ class _ProfilePageViewState extends State<ProfilePageView> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center, // Center vertically
+              //mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Center( // Center horizontally and vertically
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 30,
-                      backgroundImage: AssetImage('assets/images/my_photo.jpg'),
+                ListTile(
+                  leading: IconButton(
+                    icon: const Icon(Icons.exit_to_app),
+                    onPressed: () {
+                      if (editMode == true) {
+                        //Save modunda olduğu için bir uyarı çıksın.
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title:
+                                  const Text("Don't forget your changes."),
+                              content: const Text(
+                                  'Your changes may not have been saved!'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    // Discard'a tıklanırsa yapılacak işlemler
+                                    // Örneğin değişiklikleri iptal etmek için gerekli kodlar buraya yazılabilir.
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('Discard'),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    // Cancel'a tıklanırsa yapılacak işlemler
+                                    // Örneğin alert dialog'u kapatmak için gerekli kodlar buraya yazılabilir.
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('Cancel'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      } else {
+                        Navigator.of(context).push(PageRouteBuilder(
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) {
+                            //eğer formda sorun yoksa
+                            return const SettingsPageView();
+                          },
+                          transitionsBuilder: (context, animation,
+                              secondaryAnimation, child) {
+                            return child; // Animasyonları devre dışı bırakmak için child'ı döndürün
+                          },
+                        ));
+                        print("Diğer sayfaya geçiş işlemi yapildi.");
+                      }
+                    },
+                  ),
+                  title: const Text(
+                    'Hesabınız bulunmamaktadır!',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
                 ListTile(
-                  title: Center( // Center horizontally
+                  subtitle: Center(
                     child: Text(
-                      name,
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                ListTile(
-                  subtitle: Center( // Center horizontally
-                    child: Text(
-                      email,
-                      style: const TextStyle(
+                      'Hesabınız bulunmamaktadır!',
+                      style: TextStyle(
                         fontSize: 18,
-                        color: Colors.grey,
+                        color: editMode == true ? Colors.grey : Colors.black,
                       ),
                     ),
                   ),
-                  trailing: const Icon(Icons.edit, color: Colors.grey),
+                  trailing: IconButton(
+                    icon: Icon(Icons.edit,
+                        color: editMode == true ? Colors.grey : Colors.black),
+                    onPressed: () {
+                      setState(() {
+                        editMode = true;
+                      });
+                    },
+                  ),
+                ),
+                Visibility(
+                  visible: editMode==true?true:false,
+                  child: ListTile(
+                    title: Center(
+                      // Center horizontally
+                      child: TextFormField(
+                        controller: emailController,
+                      ),
+                    ),
+                  ),
                 ),
                 ListTile(
-                  title: Center( // Center horizontally
+                  title: Center(
+                    // Center horizontally
                     child: Text(
                       'Password: $password',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 18,
-                        color: Colors.grey,
+                        color: editMode == true ? Colors.grey : Colors.black,
                       ),
                     ),
                   ),
-                  trailing: const Icon(Icons.edit, color: Colors.grey),
-                ),
-                ListTile(
-                  title: Center( // Center horizontally
-                    child: TextFormField(),
+                  trailing: IconButton(
+                    icon: Icon(Icons.edit,
+                        color: editMode == true ? Colors.grey : Colors.black),
+                    onPressed: () {
+                      setState(() {
+                        editMode = true;
+                      });
+                    },
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Navigate to an edit profile page or show a modal for editing
-                    // You can implement the edit functionality as needed
-                    // For simplicity, I'm just changing the values here
-                    setState(() {
-                      name = 'New Name';
-                      email = 'new.email@example.com';
-                      password = 'new_password';
-                    });
-                  },
-                  child: const Text('Edit Profile'),
+                Visibility(
+                  visible: editMode==true?true:false,
+                  child: ListTile(
+                    title: Center(
+                      // Center horizontally
+                      child: TextFormField(
+                        controller: passwordController,
+                      ),
+                    ),
+                  ),
+                ),
+                Visibility(
+                  visible: editMode==true?true:false,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        editMode = false;
+                      });
+                      //Insert shared preferences for saving on user's device.
+                    },
+                    child: const Text('Save'),
+                  ),
                 ),
               ],
             ),

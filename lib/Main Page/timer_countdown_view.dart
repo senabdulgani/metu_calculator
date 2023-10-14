@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
-import 'package:metu_calculator/Admin%20Paneli/admin_panel_Menu.dart';
 
 
 class TimerCountDown extends StatefulWidget {
@@ -13,13 +12,20 @@ class TimerCountDown extends StatefulWidget {
 class _TimerCountDownState extends State<TimerCountDown> {
 
   // List of reminders fetched from Firebase
-  List<Widget> remindersListOfMainPage = [];
+  DateTime examDay = DateTime(2024, 6, 1, 9, 0);
+  DateTime reminder1 = DateTime(2024,1,5,23);
+  
+  int counter = 0;
 
+  void increaseCounter() {    
+      counter++;
+  }
 
   @override
   Widget build(BuildContext context) {
-    DateTime examDay = DateTime(2024, 6, 1, 9, 0);
-    DateTime reminder1 = DateTime(2024,1,5,23);
+    List<Widget> counterWidgets = List.generate(counter, (index) {
+      return CounterForReminders(examDay: examDay);
+    });
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -36,29 +42,28 @@ class _TimerCountDownState extends State<TimerCountDown> {
         const SizedBox(height: 20),
         CounterForReminders(examDay: examDay),
         SizedBox(height: 20,),
-        const Text('Quiz Notu'),
-        CounterForReminders(examDay: reminder1),
-        const SizedBox(height: 20),
+        Column(
+          children: counterWidgets,
+        ),
         //This section will destroy.
 
         const SizedBox(height: 20),
 
         ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) =>
-                    AdminPanelMenu(),
-                transitionDuration: Duration(seconds: 0),
-              ),
-            );
+            increaseCounter();
+            // Navigator.push(
+            //   context,
+            //   PageRouteBuilder(
+            //     pageBuilder: (context, animation, secondaryAnimation) =>
+            //         AdminPanelMenu(),
+            //     transitionDuration: Duration(seconds: 0),
+            //   ),
+            // );
           },
-          child: Text('Admin Panel Giriş'),
+          child: const Text('Admin Panel Giriş'),
         ),
-        
-
-      ],
+        ],
     );
   }
 }
