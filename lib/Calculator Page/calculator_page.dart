@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:metu_calculator/state_data.dart';
+import 'package:metu_calculator/Calculator%20Page/grades_store.dart';
+import 'package:metu_calculator/Main%20Page/state_data.dart';
 import 'package:provider/provider.dart';
 import 'result_page_view.dart';
 import '../Footer Bar/footer_navigation_bar_view.dart';
-import '../general_app_bar.dart';
+import '../Constant/general_app_bar.dart';
 
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({super.key, this.title});
@@ -40,11 +41,10 @@ FocusNode writing2FocusNode = FocusNode();
 FocusNode speakingFocusNode = FocusNode();
 FocusNode instructorFocusNode = FocusNode();
 
+final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
 @override
 class _CalculatorPage extends State<CalculatorPage> {
-  //create result variable for write other page.
-  double result = 0.0;
-
   void resetBoard() {
     midterm1Controller.clear();
     midterm2Controller.clear();
@@ -154,7 +154,9 @@ class _CalculatorPage extends State<CalculatorPage> {
                 //Midterm ------------
                 const Padding(
                   padding: EdgeInsets.all(15),
-                  child: Text('Midterm Notları', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
+                  child: Text('Midterm Notları',
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
                 ),
                 NotTextfield(
                   title: 'Midterm 1',
@@ -172,7 +174,9 @@ class _CalculatorPage extends State<CalculatorPage> {
                 //Quiz ------------
                 const Padding(
                   padding: EdgeInsets.all(15),
-                  child: Text('Quiz Notları', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
+                  child: Text('Quiz Notları',
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
                 ),
                 Column(
                   children: [
@@ -206,7 +210,9 @@ class _CalculatorPage extends State<CalculatorPage> {
                 //Writing ----------------
                 const Padding(
                   padding: EdgeInsets.all(15),
-                  child: Text('Writing Notları', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
+                  child: Text('Writing Notları',
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
                 ),
                 Column(
                   children: [
@@ -228,7 +234,9 @@ class _CalculatorPage extends State<CalculatorPage> {
                 //Speaking ----------------
                 const Padding(
                   padding: EdgeInsets.all(15),
-                  child: Text('Speaking Notları', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
+                  child: Text('Speaking Notları',
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
                 ),
                 NotTextfield(
                   title: 'Speaking',
@@ -239,7 +247,9 @@ class _CalculatorPage extends State<CalculatorPage> {
                 //Instructor ----------------
                 const Padding(
                   padding: EdgeInsets.all(15),
-                  child: Text('Instructor Notları', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
+                  child: Text('Instructor Notları',
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
                 ),
                 NotTextfield(
                   title: 'Instructor',
@@ -255,7 +265,8 @@ class _CalculatorPage extends State<CalculatorPage> {
                           //eğer formda sorun yoksa
                           return const ResultPageView();
                         },
-                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
                           return child; // Animasyonları devre dışı bırakmak için child'ı döndürün
                         },
                       ));
@@ -263,7 +274,7 @@ class _CalculatorPage extends State<CalculatorPage> {
                   },
                 ),
 
-                //Buttons____________________
+                //Buttons________
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -286,7 +297,7 @@ class _CalculatorPage extends State<CalculatorPage> {
                               content: Text('Exam grades have been saved.'),
                             ),
                           );
-                          //saveExamGrades();
+                          UserGrades().veriKaydet();
                         },
                         child: const Text('Save Grades'),
                       ),
@@ -302,17 +313,18 @@ class _CalculatorPage extends State<CalculatorPage> {
         builder: (context, pageIndexModel, child) {
           return FloatingActionButton(
             onPressed: () {
-              //eğer formda bilr uyarı varsa devam edemez
+              //eğer formda bile uyarı varsa devam edemez
               if (formKey.currentState!.validate()) {
                 calculateThem();
-                pageIndexModel.setCurrentPageIndex(2);
+                pageIndexModel.setCurrentPageIndex(1);
                 Navigator.of(context).push(PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) {
                     //eğer formda sorun yoksa
 
                     return const ResultPageView();
                   },
-                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
                     return child; // Animasyonları devre dışı bırakmak için child'ı döndürün
                   },
                 ));
@@ -380,14 +392,17 @@ class NotTextfield extends StatelessWidget {
           }
         },
         validator: (value) {
-          if (value != null && double.tryParse(value) != null && double.parse(value) > 100) {
+          if (value != null &&
+              double.tryParse(value) != null &&
+              double.parse(value) > 100) {
             return '100 den büyük olamaz';
           }
           return null;
         },
         decoration: InputDecoration(
           labelText: title,
-          labelStyle: const TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500),
+          labelStyle: const TextStyle(
+              color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500),
           border: const OutlineInputBorder(),
 
           //FOCUS Style

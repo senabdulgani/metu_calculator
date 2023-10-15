@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAXPonCKmnhgf7HrY7sQFnQvXUTzdk-hBc',
-    appId: '1:1087048801658:android:9ce3c62f1f078e71b7cac3',
+    appId: '1:1087048801658:android:6e06e39cc239f2b6b7cac3',
     messagingSenderId: '1087048801658',
     projectId: 'metucalculator-723aa',
     storageBucket: 'metucalculator-723aa.appspot.com',
@@ -59,7 +59,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCHoHTgZsEz44XyaHHgKQtJTwPaA3QoSWY',
-    appId: '1:1087048801658:ios:948725ffb1deb843b7cac3',
+    appId: '1:1087048801658:ios:f3baac124cdeae6db7cac3',
     messagingSenderId: '1087048801658',
     projectId: 'metucalculator-723aa',
     storageBucket: 'metucalculator-723aa.appspot.com',

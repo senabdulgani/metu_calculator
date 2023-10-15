@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:metu_calculator/state_data.dart';
+import 'package:metu_calculator/Main%20Page/state_data.dart';
 import 'package:provider/provider.dart';
 import '../Footer Bar/footer_navigation_bar_view.dart';
-import '../general_app_bar.dart';
+import '../Constant/general_app_bar.dart';
 
 class ResultPageView extends StatefulWidget {
   const ResultPageView({super.key});
@@ -25,7 +25,8 @@ class _ResultPageViewState extends State<ResultPageView> {
         return Stack(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25, // Ekranın 1/4'ü kadar yükseklik
+              height: MediaQuery.of(context).size.height *
+                  0.25, // Ekranın 1/4'ü kadar yükseklik
               child: const Center(
                 child: Text('Buraya istediğiniz içeriği ekleyin'),
               ),
@@ -39,8 +40,8 @@ class _ResultPageViewState extends State<ResultPageView> {
   @override
   Widget build(BuildContext context) {
     double result = Provider.of<StateData>(context).result;
-    int currentPageIndex = Provider.of<StateData>(context).currentPageIndex;
-    final pageIndexModel = Provider.of<StateData>(context);
+    // int currentPageIndex = Provider.of<StateData>(context).currentPageIndex;
+    // final pageIndexModel = Provider.of<StateData>(context);
 
     return Scaffold(
       appBar: const MainAppBar(),
@@ -62,7 +63,8 @@ class _ResultPageViewState extends State<ResultPageView> {
                 ),
                 Text(
                   result.toStringAsFixed(1),
-                  style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 32, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
                   height: 50,
@@ -71,7 +73,11 @@ class _ResultPageViewState extends State<ResultPageView> {
                   onTap: () {
                     openBottomSheet(context);
                   },
-                  child: Container(width: 50, height: 50, child: Image.asset('assets/images/png-transparent-incandescent-light-bulb-emoji-lighting-infrared-flashlight-electronics-hand-color-thumbnail.png')),
+                  child: Container(
+                      width: 50,
+                      height: 50,
+                      child: Image.asset(
+                          'assets/images/png-transparent-incandescent-light-bulb-emoji-lighting-infrared-flashlight-electronics-hand-color-thumbnail.png')),
                 ),
                 const SizedBox(
                   height: 20,

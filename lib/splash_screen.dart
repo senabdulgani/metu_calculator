@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:metu_calculator/home_page.dart';
+import 'package:metu_calculator/Main%20Page/home_page.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -16,8 +16,9 @@ class _SplashState extends State<Splash> {
   }
 
   navigatetohome() async {
-    await Future.delayed(Duration(milliseconds: 1500), () {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainMenuStarting()));
+    await Future.delayed(const Duration(milliseconds: 1500), () {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const MainMenuStarting()));
     });
   }
 
@@ -34,8 +35,8 @@ class _SplashState extends State<Splash> {
               height: 300.0,
               width: 300.0,
             ),
-            SizedBox(height: 16.0),
-            CircularProgressIndicator(
+            const SizedBox(height: 16.0),
+            const CircularProgressIndicator(
               color: Colors.black,
             ),
           ],
