@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:metu_calculator/Firebase_sevice.dart/firebase_service.dart';
+import 'package:metu_calculator/Settings_Page_View/setting_page_view.dart';
 
 class FeedbackPageView extends StatefulWidget {
   const FeedbackPageView({super.key});
@@ -16,8 +17,18 @@ class _FeedbackPageViewState extends State<FeedbackPageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+        Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          const SettingsPageView(),
+                      transitionDuration: const Duration(seconds: 0),
+                    ),
+                  );
+      },),
       backgroundColor: Colors.red, // Arka plan rengi (kırmızı)
-
       body: Center(
         child: Container(
           width: 320, // Container'ın genişliği

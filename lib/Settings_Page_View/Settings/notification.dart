@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 
-class Notifications extends StatelessWidget {
+class Notifications extends StatefulWidget {
   const Notifications({super.key});
+
+  @override
+  State<Notifications> createState() => _NotificationsState();
+}
+
+class _NotificationsState extends State<Notifications> {
+
+bool switchValueSound = true;
+bool switchValueVibration = true;
+bool notificationVibrationValue = true;
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,26 +31,41 @@ class Notifications extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             SwitchListTile(
-              title: const Text('Enable Notifications'),
-              value: true, // You can manage the state of the switch here.
+              title: const Text('Enable Reminder Notifications'),
+              value: switchValueVibration, // You can manage the state of the switch here.
               onChanged: (bool value) {
-                // Handle the switch state change here.
+                setState(() {
+                  switchValueVibration =! switchValueVibration;
+                });
               },
             ),
-            ListTile(
+            SwitchListTile(
               title: const Text('Notification Sound'),
-              trailing: const Icon(Icons.arrow_forward),
-              onTap: () {
-                // Navigate to a page to select notification sound.
+              value: switchValueSound,
+              onChanged: (bool value) {
+                setState(() {
+                  switchValueSound =! switchValueSound;
+                });
+              },
+            ),
+            SwitchListTile(
+              title: const Text('Notification Vibration'),
+              value: notificationVibrationValue,
+              onChanged: (bool value) {
+                setState(() {
+                  notificationVibrationValue =! notificationVibrationValue;
+                });
               },
             ),
             ListTile(
-              title: const Text('Notification Vibration'),
-              trailing: const Icon(Icons.arrow_forward),
-              onTap: () {
-                // Navigate to a page to configure notification vibration.
+              titleAlignment: ListTileTitleAlignment.center,
+              leading: ElevatedButton(child: Text('Save'),
+              onPressed: () {
+                //Bilgileri shared preferences ile programa kaydet. 
+                ///To-Do
               },
-            ),
+              ),
+              ),
           ],
         ),
       ),
